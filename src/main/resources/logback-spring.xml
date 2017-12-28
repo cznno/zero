@@ -147,8 +147,8 @@
 
     <springProfile name="default">
     <!--<springProfile name="dev">-->
-        <logger name="com.fibrlink" level="info"/>
-        <root level="info">
+        <logger name="com.fibrlink" level="debug"/>
+        <root level="debug">
             <appender-ref ref="FILEERROR" />
             <appender-ref ref="FILEWARN" />
             <appender-ref ref="FILEINFO" />

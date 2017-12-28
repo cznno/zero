@@ -1,6 +1,5 @@
 package person.cznno.zero.admin.service;
 
-import com.github.pagehelper.PageHelper;
 import person.cznno.zero.admin.entity.UserEntity;
 
 import java.util.List;
@@ -11,11 +10,13 @@ import java.util.List;
  */
 public interface UserService {
 
-     List<UserEntity> getAll(UserEntity city) ;
+    List<UserEntity> getAll(UserEntity city);
 
-     UserEntity getById(Integer id) ;
+    UserEntity getById(Integer id);
 
-     void deleteById(Integer id);
+    UserEntity getUserByUsernameAndPassword(String username, String password);
 
-     void save(UserEntity country);
+    void deleteById(Integer id);
+
+    void save(UserEntity country);
 }

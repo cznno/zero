@@ -1,4 +1,4 @@
-package person.cznno.zero.base;
+package person.cznno.zero.base.model.entity;
 
 import lombok.Data;
 
@@ -10,8 +10,9 @@ import javax.persistence.*;
  */
 @Data
 public class BaseEntity {
+
     @Id
-    @Column(name = "Id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 

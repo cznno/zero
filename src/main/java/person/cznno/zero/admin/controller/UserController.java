@@ -2,6 +2,7 @@ package person.cznno.zero.admin.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import person.cznno.zero.admin.entity.UserEntity;
@@ -22,7 +23,12 @@ public class UserController {
     private UserService userService;
 
     @GetMapping
-    public List<UserEntity> getAll(UserEntity userEntity){
+    public List<UserEntity> getAll(UserEntity userEntity) {
         return userService.getAll(userEntity);
+    }
+
+    @GetMapping("a/{id}")
+    public UserEntity get(@PathVariable  Integer id) {
+        return userService.getById(id);
     }
 }

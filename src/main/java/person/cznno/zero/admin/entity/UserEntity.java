@@ -2,8 +2,7 @@ package person.cznno.zero.admin.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.codehaus.jackson.annotate.JsonIgnore;
-import person.cznno.zero.base.BaseEntity;
+import person.cznno.zero.base.model.entity.BaseEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Table;
@@ -20,7 +19,6 @@ import java.util.Date;
 @Table(name = "sys_user")
 public class UserEntity extends BaseEntity{
 
-    private Integer id;
     //用户名
     private String username;
     //密码

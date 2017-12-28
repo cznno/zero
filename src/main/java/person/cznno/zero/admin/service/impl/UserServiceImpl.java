@@ -28,6 +28,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserEntity getUserByUsernameAndPassword(String username, String password) {
+        return userDao.selectByUsernameAndPassword(username, password);
+    }
+
+    @Override
     public UserEntity getById(Integer id) {
         return userDao.selectByPrimaryKey(id);
     }
