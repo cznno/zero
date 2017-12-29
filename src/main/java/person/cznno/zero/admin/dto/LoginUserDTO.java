@@ -1,5 +1,6 @@
 package person.cznno.zero.admin.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 /**
@@ -7,6 +8,7 @@ import lombok.Data;
  * Date: 17-12-28
  */
 @Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class LoginUserDTO {
 
     //用户名

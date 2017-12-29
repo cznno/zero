@@ -1,19 +1,18 @@
-package person.cznno.zero.base.config;
+package person.cznno.zero;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.AuthorizationException;
-import org.apache.shiro.realm.Realm;
-import org.apache.shiro.realm.text.TextConfigurationRealm;
-import org.apache.shiro.spring.web.config.DefaultShiroFilterChainDefinition;
-import org.apache.shiro.spring.web.config.ShiroFilterChainDefinition;
 import org.apache.shiro.subject.Subject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
-import org.springframework.context.annotation.Bean;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -21,11 +20,22 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import java.util.HashMap;
 import java.util.Map;
 
+@SpringBootApplication
+@MapperScan(basePackages = "person.cznno.zero.*.dao")
 @Configuration
-public class WebApp { //NOPMD
+@ControllerAdvice
+@Slf4j
+public class Application extends SpringBootServletInitializer {
 
-    private static Logger log = LoggerFactory.getLogger(WebApp.class);
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
 
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+        // 注意这里要指向原先用main方法执行的Application启动类
+        return builder.sources(Application.class);
+    }
 
     @ExceptionHandler(AuthorizationException.class)
     @ResponseStatus(HttpStatus.FORBIDDEN)
@@ -41,26 +51,6 @@ public class WebApp { //NOPMD
         model.addAttribute("errors", map);
 
         return "error";
-    }
-
-    @Bean
-    public Realm realm() {
-        TextConfigurationRealm realm = new TextConfigurationRealm();
-        realm.setUserDefinitions("joe.coder=password,user\n" +
-                "jill.coder=password,admin");
-
-        realm.setRoleDefinitions("admin=read,write\n" +
-                "user=read");
-        realm.setCachingEnabled(true);
-        return realm;
-    }
-
-    @Bean
-    public ShiroFilterChainDefinition shiroFilterChainDefinition() {
-        DefaultShiroFilterChainDefinition chainDefinition = new DefaultShiroFilterChainDefinition();
-        chainDefinition.addPathDefinition("/login.html", "authc"); // need to accept POSTs from the login form
-        chainDefinition.addPathDefinition("/logout", "logout");
-        return chainDefinition;
     }
 
     @ModelAttribute(name = "subject")
