@@ -25,7 +25,7 @@ public class UserEntity extends BaseEntity{
     @Column(name = "passwrd")
     private String password;
     //真名
-    private String realname;
+    private String realName;
     //电子邮箱地址
     private String mail_address;
     //电话

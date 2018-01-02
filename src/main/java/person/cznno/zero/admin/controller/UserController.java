@@ -1,10 +1,11 @@
 package person.cznno.zero.admin.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import person.cznno.zero.admin.dao.UserDao;
+import person.cznno.zero.admin.dto.LoginUserDTO;
 import person.cznno.zero.admin.entity.UserEntity;
 import person.cznno.zero.admin.service.UserService;
 
@@ -19,11 +20,14 @@ import java.util.List;
 @RestController
 @RequestMapping("/admin/user")
 public class UserController {
-    @Resource
+
+    @Autowired
     private UserService userService;
 
+    @RequiresPermissions("article:list")
     @GetMapping
-    public List<UserEntity> getAll(UserEntity userEntity) {
+    public List<UserEntity> getAll(UserEntity userEntity,@SessionAttribute("user_info") LoginUserDTO userDTO) {
+        System.out.println(userDTO);
         return userService.getAll(userEntity);
     }
 

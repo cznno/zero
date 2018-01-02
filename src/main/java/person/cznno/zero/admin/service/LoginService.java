@@ -4,10 +4,11 @@ import person.cznno.zero.admin.dto.LoginUserDTO;
 import person.cznno.zero.base.model.response.Response;
 
 public interface LoginService {
+
     /**
      * 登录表单提交
      *
-     * @param jsonObject
+     * @param userDTO
      * @return
      */
     Response authLogin(LoginUserDTO userDTO);
@@ -26,12 +27,12 @@ public interface LoginService {
      *
      * @return
      */
-    void getInfo();
+    Response getInfo(String username);
 
     /**
      * 退出登录
      *
      * @return
      */
-    void logout();
+    Response logout();
 }

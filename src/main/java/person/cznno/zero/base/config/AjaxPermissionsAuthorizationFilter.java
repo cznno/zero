@@ -22,7 +22,7 @@ public class AjaxPermissionsAuthorizationFilter extends FormAuthenticationFilter
             res.setCharacterEncoding("UTF-8");
             res.setContentType("application/json");
             out = response.getWriter();
-            out.println("");
+            out.println("登陆已过期,请重新登陆");
         } catch (Exception e) {
         } finally {
             if (null != out) {

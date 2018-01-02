@@ -1,6 +1,7 @@
 package person.cznno.zero.admin.service.impl;
 
 import com.github.pagehelper.PageHelper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import person.cznno.zero.admin.dao.UserDao;
 import person.cznno.zero.admin.entity.UserEntity;
@@ -16,7 +17,7 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Resource
+    @Autowired
     private UserDao userDao;
 
     @Override
