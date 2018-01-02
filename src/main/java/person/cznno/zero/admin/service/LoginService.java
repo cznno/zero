@@ -10,7 +10,7 @@ public interface LoginService {
      * @param jsonObject
      * @return
      */
-    Response authLogin(LoginUserDTO jsonObject);
+    Response authLogin(LoginUserDTO userDTO);
 
     /**
      * 根据用户名和密码查询对应的用户

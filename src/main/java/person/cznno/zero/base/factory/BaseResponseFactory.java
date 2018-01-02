@@ -11,12 +11,12 @@ import person.cznno.zero.base.model.response.Response;
  * Date: 17-12-28
  */
 @Component
-public class BaseResponseFactory implements IResponseFactory {
+public class BaseResponseFactory<T> implements IResponseFactory<T> {
 
     private static final BaseResponse response = new BaseResponse();
 
     @Override
-    public Response getResponse(StatusEnum anEnum, Object data) {
+    public Response getResponse(StatusEnum anEnum, T data) {
 
         CommonStatusEnum commonStatusEnum = (CommonStatusEnum) anEnum;
         response.setSuccess(commonStatusEnum.isSuccess());
@@ -29,6 +29,19 @@ public class BaseResponseFactory implements IResponseFactory {
         CommonStatusEnum commonStatusEnum = (CommonStatusEnum) anEnum;
         response.setSuccess(commonStatusEnum.isSuccess());
         response.setMsg(commonStatusEnum.getMsg());
+        return response;
+    }
+
+    public Response getResponse(Boolean success,String msg,T data){
+        response.setSuccess(success);
+        response.setMsg(msg);
+        response.setData(data);
+        return response;
+    }
+
+    public Response getResponse(Boolean success,T data){
+        response.setSuccess(success);
+        response.setData(data);
         return response;
     }
 }

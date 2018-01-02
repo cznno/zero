@@ -2,27 +2,30 @@ package person.cznno.zero.admin.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import person.cznno.zero.admin.dao.UserDao;
 import person.cznno.zero.admin.dto.LoginUserDTO;
 import person.cznno.zero.admin.entity.UserEntity;
 import person.cznno.zero.admin.service.LoginService;
 import person.cznno.zero.admin.service.UserService;
+import person.cznno.zero.base.enums.AuthStatusEnum;
+import person.cznno.zero.base.factory.BaseResponseFactory;
 import person.cznno.zero.base.model.response.Response;
-
-import javax.annotation.Resource;
 
 @Service
 @Slf4j
 public class LoginServiceImpl implements LoginService {
 
-    private static final ModelMapper modelMapper = new ModelMapper();
-    @Resource
+    private static final ModelMapper MODEL_MAPPER = new ModelMapper();
+    @Autowired
+    private static final BaseResponseFactory RESPONSE_FACTORY = new BaseResponseFactory();
+    @Autowired
     private UserService userService;
+    private AuthStatusEnum authStatusEnum;
 //    @Resource
 //    private PermissionService permissionService;
 
@@ -45,10 +48,22 @@ public class LoginServiceImpl implements LoginService {
 //        }
 //        return CommonUtil.successJson(returnData);
 //    }
-
     @Override
-    public Response authLogin(LoginUserDTO jsonObject) {
-        return null;
+    public Response authLogin(LoginUserDTO userDTO) {
+        String username = userDTO.getUsername();
+        String password = userDTO.getPassword();
+        AuthStatusEnum resEnum;
+        Subject currentUser = SecurityUtils.getSubject();
+        UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+        try {
+            currentUser.login(token);
+//            returnData.put("result", "success");
+            resEnum=AuthStatusEnum.LOGIN_SUCCESS;
+        } catch (AuthenticationException e) {
+//            returnData.put("result", "fail");\
+            resEnum=AuthStatusEnum.LOGIN_FAIL;
+        }
+        return RESPONSE_FACTORY.getResponse(resEnum.isSuccess(), resEnum.getMsg());
     }
 
     /**
@@ -61,7 +76,7 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public LoginUserDTO getUser(String username, String password) {
         UserEntity userEntity = userService.getUserByUsernameAndPassword(username, password);
-        return modelMapper.map(userEntity, LoginUserDTO.class);
+        return MODEL_MAPPER.map(userEntity, LoginUserDTO.class);
     }
 
     @Override
