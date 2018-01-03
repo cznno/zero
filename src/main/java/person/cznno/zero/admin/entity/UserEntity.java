@@ -27,13 +27,13 @@ public class UserEntity extends BaseEntity{
     //真名
     private String realName;
     //电子邮箱地址
-    private String mail_address;
+    private String mailAddress;
     //电话
     private String phone;
     //是否有效  1有效  2无效
     private Boolean enabled;
     //修改时间
-    private Date update_time;
+    private Date updateTime;
     //创建时间
-    private Date create_time;
+    private Date createTime;
 }

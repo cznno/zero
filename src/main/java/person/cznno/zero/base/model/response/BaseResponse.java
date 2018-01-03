@@ -14,7 +14,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class BaseResponse<T>  implements Response<T>  {
+public class BaseResponse<T> implements Response<T> {
 
     private Boolean success;
     private String msg;

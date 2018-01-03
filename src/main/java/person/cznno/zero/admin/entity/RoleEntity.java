@@ -15,11 +15,11 @@ public class RoleEntity {
 
     private Integer id;
     //角色名
-    private String role_name;
+    private String roleName;
     //是否有效  1有效  2无效
     private Byte enabled;
     //创建时间
-    private Date create_time;
+    private Date createTime;
     //修改时间
-    private Date update_time;
+    private Date updateTime;
 }

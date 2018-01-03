@@ -15,13 +15,13 @@ public class UserRoleEntity {
 
     private Integer id;
     //用户ID
-    private Integer user_id;
+    private Integer userId;
     //角色ID
-    private Integer role_id;
+    private Integer roleId;
     //创建时间
-    private Date create_time;
+    private Date createTime;
     //修改时间
-    private Date update_time;
+    private Date updateTime;
     //启用
     private Boolean enabled;
 }

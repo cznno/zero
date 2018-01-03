@@ -15,11 +15,11 @@ public class RolePermissionEntity {
 
     private Integer id;
     //角色id
-    private Integer role_id;
+    private Integer roleId;
     //权限id
-    private Integer permission_id;
-    private Date create_time;
-    private Date update_time;
+    private Integer permissionId;
+    private Date createTime;
+    private Date updateTime;
     //是否有效 1有效     2无效
     private Boolean enabled;
 }
