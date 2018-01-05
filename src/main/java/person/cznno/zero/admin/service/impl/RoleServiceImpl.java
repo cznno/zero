@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import person.cznno.zero.admin.dao.RoleDao;
 import person.cznno.zero.admin.entity.RoleEntity;
 import person.cznno.zero.admin.service.RoleService;
+import person.cznno.zero.admin.service.UserService;
 import person.cznno.zero.base.enums.CrudStatusEnum;
 import person.cznno.zero.base.factory.BaseResponseFactory;
 import person.cznno.zero.base.model.response.Response;
@@ -17,11 +18,14 @@ public class RoleServiceImpl implements RoleService {
 	@Autowired
 	private RoleDao roleDao;
 	@Autowired
+    private UserService userService;
+	@Autowired
 	private static final BaseResponseFactory RESPONSE_FACTORY = new BaseResponseFactory();
 	
 	public Response insert(RoleEntity role) {
 		
 		 int insertResult = roleDao.insertSelective(role);
+		 int a=1/0;
 		 if (insertResult==1) 
 			 return RESPONSE_FACTORY.getResponse(CrudStatusEnum.INSERT_SUCCESS.isSuccess(), CrudStatusEnum.INSERT_SUCCESS.getMsg());
 		 return RESPONSE_FACTORY.getResponse(CrudStatusEnum.INSERT_FAIL.isSuccess(), CrudStatusEnum.INSERT_FAIL.getMsg());

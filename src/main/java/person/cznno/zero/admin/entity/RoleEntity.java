@@ -1,7 +1,10 @@
 package person.cznno.zero.admin.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import person.cznno.zero.base.model.entity.BaseEntity;
 
+import javax.persistence.Table;
 import java.util.Date;
 
 /**
@@ -11,9 +14,10 @@ import java.util.Date;
  * @version 1.0 
  */
 @Data
-public class RoleEntity {
+@EqualsAndHashCode(callSuper = false)
+@Table(name="sys_role")
+public class RoleEntity extends BaseEntity {
 
-    private Integer id;
     //角色名
     private String roleName;
     //是否有效  1有效  2无效

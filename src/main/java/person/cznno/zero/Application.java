@@ -10,6 +10,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.interceptor.TransactionInterceptor;
@@ -20,22 +21,12 @@ import java.util.Properties;
 @SpringBootApplication
 @Configuration
 @ControllerAdvice
-@Slf4j
 @EnableTransactionManagement
-@MapperScan(basePackages = "person.cznno.zero.*.dao")
+@EnableAspectJAutoProxy
 public class Application extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
-//        SpringApplication.run(Application.class, args);
-        SpringApplication application = new SpringApplication(Application.class);
-        application.setBannerMode(Banner.Mode.OFF);
-        application.run(args);
-    }
-
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-        // 注意这里要指向原先用main方法执行的Application启动类
-        return builder.sources(Application.class);
+        SpringApplication.run(Application.class, args);
     }
 
 //    @Exc

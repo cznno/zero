@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd  
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd  
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd"
+       default-lazy-init="false">
+
+
+    <!-- 下面使用aop切面的方式来实现 -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <!--配置事务传播性，隔离级别以及超时回滚等问题 -->
+        <tx:attributes>
+            <tx:method name="save*" propagation="REQUIRES_NEW"/>
+            <tx:method name="del*" propagation="REQUIRES_NEW"/>
+            <tx:method name="update*" propagation="REQUIRES_NEW"/>
+            <tx:method name="insert*" propagation="REQUIRES_NEW" rollback-for="java.lang.Exception"/>
+            <tx:method name="*" rollback-for="Exception"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <aop:config>
+        <!--配置事务切点 -->
+        <aop:pointcut id="services"
+                      expression="execution(* person.cznno.zero.*.service.*.*(..)) ||
+            execution(* person.cznno.zero.*.service.*.impl.*(..))"/>
+        <aop:advisor pointcut-ref="services" advice-ref="txAdvice"/>
+    </aop:config>
+
+
+</beans>

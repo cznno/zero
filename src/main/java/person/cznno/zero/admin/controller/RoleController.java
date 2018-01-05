@@ -19,7 +19,7 @@ public class RoleController {
 	 * @return
 	 */
 	@PostMapping
-	public Response insert(RoleEntity role){
+	public Response insert(@RequestBody RoleEntity role){
 		return roleService.insert(role);
 		
 	}
@@ -31,9 +31,9 @@ public class RoleController {
      */
     @GetMapping("/{id}")
     public RoleEntity selectById(@PathVariable("id") Integer id) {
-//    	int i = 1/0;
         return roleService.selectById(id);
     }
+
 	 /**
      * 修改角色
      *
