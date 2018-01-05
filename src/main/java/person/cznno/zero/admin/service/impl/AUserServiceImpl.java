@@ -5,9 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import person.cznno.zero.admin.dao.UserDao;
 import person.cznno.zero.admin.entity.UserEntity;
-import person.cznno.zero.admin.service.UserService;
+import person.cznno.zero.admin.service.AUserService;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -15,15 +14,15 @@ import java.util.List;
  * Date: 17-12-28
  */
 @Service
-public class UserServiceImpl implements UserService {
+public class AUserServiceImpl implements AUserService {
 
     @Autowired
     private UserDao userDao;
 
     @Override
-    public List<UserEntity> getAll(UserEntity city) {
-        if (city.getPage() != null && city.getRows() != null) {
-            PageHelper.startPage(city.getPage(), city.getRows());
+    public List<UserEntity> getAll(UserEntity user) {
+        if (user.getPage() != null && user.getRows() != null) {
+            PageHelper.startPage(user.getPage(), user.getRows());
         }
         return userDao.selectAll();
     }
@@ -39,16 +38,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteById(Integer id) {
-        userDao.deleteByPrimaryKey(id);
+    public int deleteById(Integer id) {
+       return userDao.deleteByPrimaryKey(id);
     }
 
     @Override
-    public void save(UserEntity country) {
-        if (country.getId() != null) {
-            userDao.updateByPrimaryKey(country);
+    public int insertSelective(UserEntity user) {
+
+        if (user.getId() != null) {
+            userDao.updateByPrimaryKey(user);
         } else {
-            userDao.insert(country);
+            userDao.insert(user);
         }
+        int a= 1/0;
+        return a;
     }
 }

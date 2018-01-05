@@ -3,13 +3,13 @@
 <mapper namespace="person.cznno.zero.admin.dao.PermissionDao">
     <resultMap id="BaseResultMap" type="person.cznno.zero.admin.entity.PermissionEntity">
         <id column="id" property="id" jdbcType="INTEGER"/>
-        <result column="menu_code" property="menu_code" jdbcType="VARCHAR"/>
-        <result column="menu_name" property="menu_name" jdbcType="VARCHAR"/>
-        <result column="permission_code" property="permission_code" jdbcType="VARCHAR"/>
-        <result column="permission_name" property="permission_name" jdbcType="VARCHAR"/>
-        <result column="required_permission" property="required_permission" jdbcType="BIT"/>
-        <result column="create_time" property="create_time" jdbcType="TIMESTAMP"/>
-        <result column="update_time" property="update_time" jdbcType="TIMESTAMP"/>
+        <result column="menu_code" property="menuCode" jdbcType="VARCHAR"/>
+        <result column="menu_name" property="menuName" jdbcType="VARCHAR"/>
+        <result column="permission_code" property="permissionCode" jdbcType="VARCHAR"/>
+        <result column="permission_name" property="permissionName" jdbcType="VARCHAR"/>
+        <result column="required_permission" property="requiredPermission" jdbcType="BIT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
         <result column="enabled" property="enabled" jdbcType="BIT"/>
     </resultMap>
 

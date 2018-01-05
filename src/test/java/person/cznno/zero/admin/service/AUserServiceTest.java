@@ -2,12 +2,13 @@ package person.cznno.zero.admin.service;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 import person.cznno.zero.admin.dao.UserDao;
 import person.cznno.zero.admin.entity.UserEntity;
-
-import javax.annotation.Resource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -17,9 +18,10 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class UserServiceTest {
+@Transactional
+public class AUserServiceTest {
 
-    @Resource
+    @Autowired
     private UserDao userDao;
 
     @Test
@@ -27,5 +29,14 @@ public class UserServiceTest {
         Integer id = 1;
         UserEntity userEntity = userDao.selectByPrimaryKey(id);
         assertThat(userEntity.getId()).isEqualTo(1);
+    }
+
+    @Test
+    public void insert() {
+        UserEntity userEntity = new UserEntity();
+        userEntity.setUsername("test_user");
+        userEntity.setPassword("123456");
+        userEntity.setRealName("test_user");
+        assertThat(userDao.insert(userEntity)).isEqualTo(1);
     }
 }

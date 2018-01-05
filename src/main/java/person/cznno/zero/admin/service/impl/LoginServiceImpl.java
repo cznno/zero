@@ -9,21 +9,20 @@ import org.apache.shiro.subject.Subject;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import person.cznno.zero.admin.dao.LoginDao;
 import person.cznno.zero.admin.dto.LoginUserDTO;
 import person.cznno.zero.admin.dto.UserInfoDTO;
 import person.cznno.zero.admin.entity.UserEntity;
 import person.cznno.zero.admin.service.LoginService;
-import person.cznno.zero.admin.service.PermissionService;
-import person.cznno.zero.admin.service.UserService;
+import person.cznno.zero.admin.service.AUserService;
 import person.cznno.zero.base.enums.AuthStatusEnum;
 import person.cznno.zero.base.factory.BaseResponseFactory;
 import person.cznno.zero.base.model.response.Response;
 
-import javax.annotation.Resource;
-
 @Service
 @Slf4j
+@Transactional
 public class LoginServiceImpl implements LoginService {
 
     private static final ModelMapper MODEL_MAPPER = new ModelMapper();
@@ -31,7 +30,7 @@ public class LoginServiceImpl implements LoginService {
     @Autowired
     private static final BaseResponseFactory RESPONSE_FACTORY = new BaseResponseFactory();
     @Autowired
-    private UserService userService;
+    private AUserService AUserService;
     @Autowired
     private LoginDao loginDao;
 
@@ -66,7 +65,7 @@ public class LoginServiceImpl implements LoginService {
      */
     @Override
     public LoginUserDTO getUser(String username, String password) {
-        UserEntity userEntity = userService.getUserByUsernameAndPassword(username, password);
+        UserEntity userEntity = AUserService.getUserByUsernameAndPassword(username, password);
         return MODEL_MAPPER.map(userEntity, LoginUserDTO.class);
     }
 

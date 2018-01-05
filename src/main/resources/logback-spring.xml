@@ -145,6 +145,7 @@
     </appender>
 
     <logger name="org.springframework" level="DEBUG" />
+    <logger name="*" level="DEBUG" />
 
     <springProfile name="default">
     <!--<springProfile name="dev">-->

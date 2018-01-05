@@ -20,7 +20,7 @@ public class LoginController {
      * @return
      */
     @PostMapping("/auth")
-    public Response authLogin(@RequestBody LoginUserDTO loginUser) {
+    public Response<?> authLogin(@RequestBody LoginUserDTO loginUser) {
         return loginService.authLogin(loginUser);
     }
 

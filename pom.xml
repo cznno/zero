@@ -25,11 +25,12 @@
     </properties>
 
     <dependencies>
-        <!-- Spring Boot -->
+        <!-- WEB-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <!-- AOP -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
@@ -40,15 +41,6 @@
             <artifactId>shiro-spring</artifactId>
             <version>1.4.0</version>
         </dependency>
-<!--        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-spring-boot-web-starter</artifactId>
-            <version>1.4.0-RC2</version>
-        </dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.security.oauth</groupId>-->
-            <!--<artifactId>spring-security-oauth2</artifactId>-->
-        <!--</dependency>-->
         <!-- DEV -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -71,7 +63,11 @@
             <artifactId>mariadb-java-client</artifactId>
             <version>1.1.7</version>
         </dependency>
-        <!--mybatis-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+        <!-- MyBatis -->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
@@ -113,8 +109,30 @@
             <artifactId>modelmapper</artifactId>
             <version>1.1.0</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
     </dependencies>
+
+    <repositories>
+        <repository>
+            <id>ali</id>
+            <name>ali</name>
+            <url>http://maven.aliyun.com/nexus/content/repositories/central/</url>
+        </repository>
+        <repository>
+            <id>central</id>
+            <name>central</name>
+            <url>https://repo1.maven.org/maven2</url>
+        </repository>
+
+    </repositories>
 
     <build>
         <plugins>

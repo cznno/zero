@@ -8,7 +8,7 @@ import java.util.List;
  * Created by cznno
  * Date: 17-12-28
  */
-public interface UserService {
+public interface AUserService {
 
     List<UserEntity> getAll(UserEntity city);
 
@@ -16,7 +16,7 @@ public interface UserService {
 
     UserEntity getUserByUsernameAndPassword(String username, String password);
 
-    void deleteById(Integer id);
+    int deleteById(Integer id);
 
-    void save(UserEntity country);
+    int insertSelective(UserEntity country);
 }
