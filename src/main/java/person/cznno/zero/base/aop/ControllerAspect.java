@@ -12,6 +12,8 @@ import person.cznno.zero.base.exception.CheckException;
 import person.cznno.zero.base.model.response.BaseResponse;
 import person.cznno.zero.base.model.response.Response;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * Created by cznno
  * Date: 18-1-3
@@ -24,8 +26,11 @@ public class ControllerAspect {
     @Pointcut("execution(public * person.cznno.zero.*.controller..*(..))")
     public void controllerAspect() {}
 
-    @Around("controllerAspect()")
-    public Object handlerControllerMethod(ProceedingJoinPoint pjp) {
+    @Around("controllerAspect()&& args(request)")
+    public Object handlerControllerMethod(ProceedingJoinPoint pjp,HttpServletRequest request) {
+        String urlReq = request.getMethod() + " " + request.getRequestURI();
+        log.info("request from ip: " + request.getRemoteAddr() + "\n" +
+                "request url: " + urlReq);
         long startTime = System.currentTimeMillis();
 
         Response result;

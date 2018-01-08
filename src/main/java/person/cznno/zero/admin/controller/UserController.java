@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import person.cznno.zero.admin.entity.UserEntity;
 import person.cznno.zero.admin.service.UserService;
+import person.cznno.zero.base.enums.CrudStatusEnum;
 import person.cznno.zero.base.factory.BaseResponseFactory;
 import person.cznno.zero.base.factory.PagedResponseFactory;
 import person.cznno.zero.base.model.response.Response;
@@ -50,7 +51,7 @@ public class UserController {
      */
     @PostMapping
     public Response insertUser(@RequestBody UserEntity entity) {
-        return BaseResponseFactory.get(userService.insertSelective(entity));
+        return BaseResponseFactory.get(CrudStatusEnum.INSERT_SUCCESS,userService.insertSelective(entity));
     }
 
     /**
