@@ -5,7 +5,7 @@ package person.cznno.zero.base.model.response;
  * Created by cznno
  * Date: 17-12-28
  */
-public interface Response<T> {
+public interface Response {
 
     String getMsg();
 

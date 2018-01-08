@@ -1,6 +1,10 @@
 package person.cznno.zero.base.model.response;
 
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
@@ -12,15 +16,16 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class PagedResponse<T> implements Response<T> {
+@JsonPropertyOrder({"success", "msg", "page", "rows", "count", "data"})
+public class PagedResponse implements Response {
 
     private Boolean success;
     private String msg;
-    private Integer pageNum;
-    private Integer pageSize;
+    private Integer page;
+    private Integer rows;
     private Long count;
     //数据内容
-    private List<T> result;
+    private List<Object> data;
 
     @Override
     public String getMsg() {
@@ -31,5 +36,4 @@ public class PagedResponse<T> implements Response<T> {
     public void setMsg(String msg) {
         this.msg = msg;
     }
-
 }
