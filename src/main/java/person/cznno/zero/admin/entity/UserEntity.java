@@ -1,6 +1,7 @@
 package person.cznno.zero.admin.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import person.cznno.zero.base.model.entity.BaseEntity;
@@ -23,6 +24,7 @@ public class UserEntity extends BaseEntity {
     private String username;
     //密码
     @Column(name = "passwrd")
+    @JsonIgnore
     private String password;
     //真名
     private String realName;
