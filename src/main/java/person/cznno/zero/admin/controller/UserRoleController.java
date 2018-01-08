@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import person.cznno.zero.admin.entity.UserRoleEntity;
 import person.cznno.zero.admin.service.UserRoleService;
 import person.cznno.zero.base.factory.BaseResponseFactory;
+import person.cznno.zero.base.factory.PagedResponseFactory;
 import person.cznno.zero.base.model.response.Response;
 
 /**
@@ -24,19 +25,19 @@ public class UserRoleController {
     /**
      * 查询所有用户角色关联
      *
-     * @param entity
-     * @return
+     * @param entity 分页参数
+     * @return 用户角色分页信息
      */
     @GetMapping
     public Response getAll(UserRoleEntity entity) {
-        return BaseResponseFactory.get(userRoleService.selectAll(entity));
+        return PagedResponseFactory.get(userRoleService.selectAll(entity));
     }
 
     /**
      * 根据id查询用户角色关联
      *
-     * @param id
-     * @return
+     * @param id 主键
+     * @return 用户角色关联实体
      */
     @GetMapping("/{id}")
     public Response SelectById(@PathVariable Integer id) {
@@ -44,10 +45,10 @@ public class UserRoleController {
     }
 
     /**
-     * 新增
+     * 新增用户角色关联
      *
-     * @param userRole
-     * @return
+     * @param userRole 用户角色关联实体
+     * @return 新增的条数
      */
     @PostMapping
     public Response insert(UserRoleEntity userRole) {
@@ -55,9 +56,9 @@ public class UserRoleController {
     }
 
     /**
-     * 修改用户角色关联
-     *
-     * @return
+     * 更新用户角色关联
+     * @param userRole 用户角色关联实体
+     * @return 更新的条数
      */
     @PutMapping
     public Response updateById(@RequestBody UserRoleEntity userRole) {
@@ -67,8 +68,8 @@ public class UserRoleController {
     /**
      * 按id删除用户角色关联
      *
-     * @param id
-     * @return
+     * @param id 主键
+     * @return 删除的条数
      */
     @DeleteMapping("/{id}")
     public Response deleteById(@PathVariable Integer id) {

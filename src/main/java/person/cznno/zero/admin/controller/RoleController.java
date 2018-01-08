@@ -21,9 +21,11 @@ public class RoleController {
     private RoleService roleService;
 
     /**
-     * @param entity
-     * @return
+     * 查询全部角色
+     * @param entity 分页参数
+     * @return 角色分页结果
      */
+    @GetMapping
     public Response selectAll(RoleEntity entity) {
         return PagedResponseFactory.get(roleService.selectAll(entity));
     }
@@ -31,8 +33,8 @@ public class RoleController {
     /**
      * 按id查询角色
      *
-     * @param id
-     * @return
+     * @param id 主键
+     * @return 角色实体
      */
     @GetMapping("/{id}")
     public Response selectById(@PathVariable("id") Integer id) {
@@ -42,8 +44,8 @@ public class RoleController {
     /**
      * 新增角色
      *
-     * @param role
-     * @return
+     * @param role 角色实体
+     * @return 增加的条数
      */
     @PostMapping
     public Response insert(@RequestBody RoleEntity role) {
@@ -51,9 +53,9 @@ public class RoleController {
     }
 
     /**
-     * 修改角色
-     *
-     * @return
+     * 按id修改角色
+     * @param role 角色实体
+     * @return 修改的条数
      */
     @PutMapping
     public Response updateById(@RequestBody RoleEntity role) {
@@ -63,8 +65,8 @@ public class RoleController {
     /**
      * 按id删除角色
      *
-     * @param id
-     * @return
+     * @param id 主键
+     * @return 删除的条数
      */
     @DeleteMapping("/{id}")
     public Response deleteById(@PathVariable Integer id) {

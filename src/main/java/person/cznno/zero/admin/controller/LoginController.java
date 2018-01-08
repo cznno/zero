@@ -22,8 +22,8 @@ public class LoginController {
     /**
      * 登录
      *
-     * @param loginUser
-     * @return
+     * @param loginUser 用户登录信息
+     * @return 登录结果
      */
     @PostMapping("/auth")
     public Response authLogin(@RequestBody LoginUserDTO loginUser) {
@@ -32,8 +32,8 @@ public class LoginController {
 
     /**
      * 查询当前登录用户的信息
-     *
-     * @return
+     * @param userDTO 保存在session的用户信息
+     * @return 当前用户信息
      */
     @PostMapping("/getInfo")
     public Response getInfo(@SessionAttribute("user_info") LoginUserDTO userDTO) {
@@ -43,7 +43,7 @@ public class LoginController {
     /**
      * 登出
      *
-     * @return
+     * @return 登出结果
      */
     @GetMapping("/logout")
     public Response logout() {

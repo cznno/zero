@@ -40,7 +40,7 @@ public class TransactionalConfig {
     private static final String[] DEFAULT_REQUIRED_METHOD_RULE_TRANSACTION_ATTRIBUTES = {
             "add*",
             "save*",
-            "insert*",
+            "insertSelective*",
             "delete*",
             "update*",
             "edit*",

@@ -20,6 +20,12 @@ public class PermissionController {
     @Autowired
     private PermissionService permissionService;
 
+    /**
+     * 查询全部权限
+     * @param entity 分页信息
+     * @return 权限分页结果
+     */
+    @GetMapping
     public Response selectAll(PermissionEntity entity) {
         return PagedResponseFactory.get(permissionService.selectAll(entity));
     }
@@ -27,8 +33,8 @@ public class PermissionController {
     /**
      * 根据id查询权限
      *
-     * @param id
-     * @return
+     * @param id 主键
+     * @return 权限
      */
     @GetMapping("/{id}")
     public Response SelectById(@PathVariable Integer id) {
@@ -38,8 +44,8 @@ public class PermissionController {
     /**
      * 新增权限
      *
-     * @param permission
-     * @return
+     * @param permission 权限实体
+     * @return 新增的条数
      */
     @PostMapping
     public Response insert(PermissionEntity permission) {
@@ -47,9 +53,9 @@ public class PermissionController {
     }
 
     /**
-     * 修改权限
-     *
-     * @return
+     * 按id修改权限
+     * @param permission 权限实体
+     * @return 修改的条数
      */
     @PutMapping
     public Response updateById(@RequestBody PermissionEntity permission) {
@@ -59,8 +65,8 @@ public class PermissionController {
     /**
      * 按id删除权限
      *
-     * @param id
-     * @return
+     * @param id 主键
+     * @return 删除的条数
      */
     @DeleteMapping("/{id}")
     public Response deleteById(@PathVariable Integer id) {
