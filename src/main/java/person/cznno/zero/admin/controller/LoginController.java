@@ -4,8 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import person.cznno.zero.admin.dto.LoginUserDTO;
 import person.cznno.zero.admin.service.LoginService;
+import person.cznno.zero.base.factory.BaseResponseFactory;
 import person.cznno.zero.base.model.response.Response;
 
+/**
+ * 登录
+ * Created by cznno
+ * Date: 18-1-8
+ */
 @RestController
 @RequestMapping("/login")
 public class LoginController {
@@ -20,8 +26,8 @@ public class LoginController {
      * @return
      */
     @PostMapping("/auth")
-    public Response<?> authLogin(@RequestBody LoginUserDTO loginUser) {
-        return loginService.authLogin(loginUser);
+    public Response authLogin(@RequestBody LoginUserDTO loginUser) {
+        return BaseResponseFactory.get(loginService.authLogin(loginUser));
     }
 
     /**
@@ -31,7 +37,7 @@ public class LoginController {
      */
     @PostMapping("/getInfo")
     public Response getInfo(@SessionAttribute("user_info") LoginUserDTO userDTO) {
-        return loginService.getInfo(userDTO.getUsername());
+        return BaseResponseFactory.get(loginService.getInfo(userDTO.getUsername()));
     }
 
     /**
@@ -41,6 +47,6 @@ public class LoginController {
      */
     @GetMapping("/logout")
     public Response logout() {
-        return loginService.logout();
+        return BaseResponseFactory.get(loginService.logout());
     }
 }
