@@ -27,7 +27,7 @@ pagehelper:
     helperDialect: mysql
     reasonable: true
     supportMethodsArguments: true
-    params: count=countSql
+    params: count=countSql, pageSizeZero=true, reasonable=true, supportMethodsArguments=true
 
 server:
   port: 8099
