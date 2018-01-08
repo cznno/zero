@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 /**
+ * 登录用户
  * Created by cznno
  * Date: 17-12-28
  */
