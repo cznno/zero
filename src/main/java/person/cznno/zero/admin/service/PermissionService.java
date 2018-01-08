@@ -1,9 +1,12 @@
 package person.cznno.zero.admin.service;
 
+import com.github.pagehelper.PageInfo;
 import person.cznno.zero.admin.entity.PermissionEntity;
-import person.cznno.zero.base.model.response.Response;
 
 public interface PermissionService {
+
+    PageInfo<PermissionEntity> selectAll(PermissionEntity entity);
+
     /**
      * 查询某用户的 角色  菜单列表   权限列表
      *
@@ -12,9 +15,9 @@ public interface PermissionService {
      */
     PermissionEntity selectById(Integer id);
 
-    Response insertSelective(PermissionEntity record);
+    int insertSelective(PermissionEntity record);
 
-    Response updateByIdSelective(PermissionEntity record);
+    int updateByIdSelective(PermissionEntity record);
 
-    Response deleteById(Integer id);
+    int deleteById(Integer id);
 }

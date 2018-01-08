@@ -1,25 +1,21 @@
 package person.cznno.zero.admin.service;
 
-import org.aspectj.lang.annotation.Aspect;
+import com.github.pagehelper.PageInfo;
 import person.cznno.zero.admin.entity.UserEntity;
-import person.cznno.zero.base.model.response.Response;
-
-import java.util.List;
 
 /**
  * Created by cznno
  * Date: 18-1-5
  */
 public interface UserService {
-    List<UserEntity> getAll(UserEntity city);
 
-    UserEntity getById(Integer id);
+    PageInfo<UserEntity> selectAll(UserEntity city);
 
-    UserEntity getUserByUsernameAndPassword(String username, String password);
+    UserEntity selectById(Integer id);
 
-    void deleteById(Integer id);
+    int updateByIdSelective(UserEntity entity);
 
-    void save(UserEntity country);
+    int insertSelective(UserEntity user);
 
-    Response insertSelective(UserEntity user);
+    int deleteById(Integer id);
 }

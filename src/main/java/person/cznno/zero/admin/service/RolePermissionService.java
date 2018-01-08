@@ -1,16 +1,17 @@
 package person.cznno.zero.admin.service;
 
+import com.github.pagehelper.PageInfo;
 import person.cznno.zero.admin.entity.RolePermissionEntity;
-import person.cznno.zero.base.model.response.Response;
 
 public interface RolePermissionService {
 
-		RolePermissionEntity selectById(Integer id);
+    PageInfo<RolePermissionEntity> selectAll(RolePermissionEntity entity);
 
-	    Response insertSelective(RolePermissionEntity record);
+    RolePermissionEntity selectById(Integer id);
 
-	    Response updateByIdSelective(RolePermissionEntity record);
+    int insertSelective(RolePermissionEntity record);
 
-	    Response deleteById(Integer id);
-	
+    int updateByIdSelective(RolePermissionEntity record);
+
+    int deleteById(Integer id);
 }

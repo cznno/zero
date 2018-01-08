@@ -1,15 +1,17 @@
 package person.cznno.zero.admin.service;
 
+import com.github.pagehelper.PageInfo;
 import person.cznno.zero.admin.entity.UserRoleEntity;
-import person.cznno.zero.base.model.response.Response;
 
 public interface UserRoleService {
 
+    PageInfo<UserRoleEntity> selectAll(UserRoleEntity entity);
+
     UserRoleEntity selectById(Integer id);
 
-    Response insertSelective(UserRoleEntity userRole);
+    int insertSelective(UserRoleEntity userRole);
 
-    Response updateByIdSelective(UserRoleEntity userRole);
+    int updateByIdSelective(UserRoleEntity userRole);
 
-    Response deleteById(Integer id);
+    int deleteById(Integer id);
 }
