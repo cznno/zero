@@ -4,7 +4,7 @@ package person.cznno.zero.base.enums;
  * Created by cznno
  * Date: 18-1-2
  */
-public enum AuthStatusEnum implements CommonStatusEnum{
+public enum AuthStatusEnum implements BaseStatusEnum {
 
     LOGIN_SUCCESS(true, "登录成功"),
     LOGIN_FAIL(false, "登录失败"),

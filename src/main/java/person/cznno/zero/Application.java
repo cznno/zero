@@ -45,36 +45,36 @@ public class Application extends SpringBootServletInitializer {
 //        return "error";
 //    }
 
-    /**
-     * 事务配置
-     * @param platformTransactionManager
-     * @return
-     */
-    @Bean(name = "transactionInterceptor")
-    public TransactionInterceptor transactionInterceptor(PlatformTransactionManager platformTransactionManager) {
-        TransactionInterceptor transactionInterceptor = new TransactionInterceptor();
-        // 事物管理器
-        transactionInterceptor.setTransactionManager(platformTransactionManager);
-        Properties transactionAttributes = new Properties();
-        // 新增
-        transactionAttributes.setProperty("insert*","PROPAGATION_REQUIRED,-Throwable");
-        // 修改
-        transactionAttributes.setProperty("update*","PROPAGATION_REQUIRED,-Throwable");
-        // 删除
-        transactionAttributes.setProperty("delete*","PROPAGATION_REQUIRED,-Throwable");
-        //查询
-        transactionAttributes.setProperty("select*","PROPAGATION_REQUIRED,-Throwable,readOnly");
-
-        transactionInterceptor.setTransactionAttributes(transactionAttributes);
-        return transactionInterceptor;
-    }
-    //代理到ServiceImpl的Bean
-    @Bean
-    public BeanNameAutoProxyCreator transactionAutoProxy() {
-        BeanNameAutoProxyCreator transactionAutoProxy = new BeanNameAutoProxyCreator();
-        transactionAutoProxy.setProxyTargetClass(true);
-        transactionAutoProxy.setBeanNames("*ServiceImpl");
-        transactionAutoProxy.setInterceptorNames("transactionInterceptor");
-        return transactionAutoProxy;
-    }
+//    /**
+//     * 事务配置
+//     * @param platformTransactionManager
+//     * @return
+//     */
+//    @Bean(name = "transactionInterceptor")
+//    public TransactionInterceptor transactionInterceptor(PlatformTransactionManager platformTransactionManager) {
+//        TransactionInterceptor transactionInterceptor = new TransactionInterceptor();
+//        // 事物管理器
+//        transactionInterceptor.setTransactionManager(platformTransactionManager);
+//        Properties transactionAttributes = new Properties();
+//        // 新增
+//        transactionAttributes.setProperty("insert*","PROPAGATION_REQUIRED,-Throwable");
+//        // 修改
+//        transactionAttributes.setProperty("update*","PROPAGATION_REQUIRED,-Throwable");
+//        // 删除
+//        transactionAttributes.setProperty("delete*","PROPAGATION_REQUIRED,-Throwable");
+//        //查询
+//        transactionAttributes.setProperty("select*","PROPAGATION_REQUIRED,-Throwable,readOnly");
+//
+//        transactionInterceptor.setTransactionAttributes(transactionAttributes);
+//        return transactionInterceptor;
+//    }
+//    //代理到ServiceImpl的Bean
+//    @Bean
+//    public BeanNameAutoProxyCreator transactionAutoProxy() {
+//        BeanNameAutoProxyCreator transactionAutoProxy = new BeanNameAutoProxyCreator();
+//        transactionAutoProxy.setProxyTargetClass(true);
+//        transactionAutoProxy.setBeanNames("*ServiceImpl");
+//        transactionAutoProxy.setInterceptorNames("transactionInterceptor");
+//        return transactionAutoProxy;
+//    }
 }

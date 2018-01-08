@@ -4,7 +4,7 @@ package person.cznno.zero.base.enums;
  * Created by cznno
  * Date: 17-12-28
  */
-public enum CrudStatusEnum implements CommonStatusEnum {
+public enum CrudStatusEnum implements BaseStatusEnum {
 
     GENERAL_SUCCESS("数据库操作成功", true),
     SELECT_SUCCESS("查询成功", true),
