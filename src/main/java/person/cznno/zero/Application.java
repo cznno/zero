@@ -1,22 +1,12 @@
 package person.cznno.zero;
 
-import lombok.extern.slf4j.Slf4j;
-import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator;
-import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
-import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.transaction.interceptor.TransactionInterceptor;
 import org.springframework.web.bind.annotation.ControllerAdvice;
-
-import java.util.Properties;
 
 @SpringBootApplication
 @Configuration
@@ -57,7 +47,7 @@ public class Application extends SpringBootServletInitializer {
 //        transactionInterceptor.setTransactionManager(platformTransactionManager);
 //        Properties transactionAttributes = new Properties();
 //        // 新增
-//        transactionAttributes.setProperty("insert*","PROPAGATION_REQUIRED,-Throwable");
+//        transactionAttributes.setProperty("insertSelective*","PROPAGATION_REQUIRED,-Throwable");
 //        // 修改
 //        transactionAttributes.setProperty("update*","PROPAGATION_REQUIRED,-Throwable");
 //        // 删除
