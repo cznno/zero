@@ -1,15 +1,17 @@
 package person.cznno.zero.base.enums;
 
 /**
+ * 权限相关消息
  * Created by cznno
  * Date: 18-1-2
  */
 public enum AuthStatusEnum implements BaseStatusEnum {
 
     LOGIN_SUCCESS(true, "登录成功"),
-    LOGIN_FAIL(false, "登录失败"),
+    LOGIN_FAIL_NOT_FOUND(false, "登录失败,账号不存在"),
+    LOGIN_FAIL_NOT_MATCH(false, "登录失败,用户名密码错误"),
     PERMISSION_DENY(false,"没有权限"),
-    REQUIRE_LOGIN(false,"需要登录"),
+    REQUIRE_LOGIN(false,"没有登录或登陆已过期,请重新登陆"),
     LOGOUT_SUCCESS(true,"登出成功"),
     LOGOUT_FAIL(false,"登出失败"),
 	REGISTER_SUCCESS(true,"注册成功"),
