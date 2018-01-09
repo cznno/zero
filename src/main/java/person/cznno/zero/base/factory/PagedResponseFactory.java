@@ -8,6 +8,7 @@ import person.cznno.zero.base.model.response.PagedResponse;
 import person.cznno.zero.base.model.response.Response;
 
 /**
+ * 分页返回消息工厂
  * Created by cznno
  * Date: 18-1-8
  */

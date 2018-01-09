@@ -6,6 +6,7 @@ import person.cznno.zero.base.model.response.BaseResponse;
 import person.cznno.zero.base.model.response.Response;
 
 /**
+ * 基础返回消息工厂
  * Created by cznno
  * Date: 17-12-28
  */
