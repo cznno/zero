@@ -25,7 +25,7 @@ import java.util.List;
 public class UserRealm extends AuthorizingRealm {
 
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
-    private static final ModelMapper MODEL_MAPPER = new ModelMapper();
+//    private static final ModelMapper MODEL_MAPPER = new ModelMapper();
     //这里注入service会导致事务失效
     @Autowired
     private UserDao userDao;
@@ -58,11 +58,9 @@ public class UserRealm extends AuthorizingRealm {
         String loginName = (String) authcToken.getPrincipal();
         // 获取用户密码
         String password = new String((char[]) authcToken.getCredentials());
-//        LoginUserDTO user = loginService.getUser(loginName, password);
         String algorithmName = "MD5";
         SimpleHash simpleHash = new SimpleHash(algorithmName, password, loginName, 2);
-        UserEntity userEntity = userDao.selectByUsernameAndPassword(loginName, simpleHash.toHex());
-        LoginUserDTO user = MODEL_MAPPER.map(userEntity, LoginUserDTO.class);
+        UserEntity user = userDao.selectByUsernameAndPassword(loginName, simpleHash.toHex());
         if (user == null) {
             //没找到帐号
             throw new UnknownAccountException();
