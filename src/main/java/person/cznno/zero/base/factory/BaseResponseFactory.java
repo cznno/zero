@@ -42,4 +42,11 @@ public class BaseResponseFactory {
         response.setData(data);
         return response;
     }
+
+    public static Response get(Boolean success, String msg) {
+        BaseResponse response = new BaseResponse();
+        response.setSuccess(success);
+        response.setMsg(msg);
+        return response;
+    }
 }
