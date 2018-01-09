@@ -1,5 +1,7 @@
 package person.cznno.zero.base.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -17,8 +19,10 @@ public class BaseEntity {
     private Integer id;
 
     @Transient
+    @JsonIgnore
     private Integer page = 1;
 
     @Transient
+    @JsonIgnore
     private Integer rows = 10;
 }

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="person.cznno.zero.admin.dao.LoginDao">
+
+    <resultMap id="loginUserMap" type="person.cznno.zero.admin.dto.UserInfoDTO">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="real_name" property="realName"/>
+        <collection property="menuList" ofType="java.lang.String">
+            <id column="menu_name"/>
+        </collection>
+        <collection property="permissionList" ofType="java.lang.String">
+            <id column="permission_code"/>
+        </collection>
+    </resultMap>
+
+    <select id="selectUserInfoByUsername" resultMap="loginUserMap" parameterType="java.lang.String">
+        SELECT
+        u.id,
+        u.username,
+        u.real_name,
+        p.menu_name,
+        p.permission_code
+        FROM sys_user u
+        JOIN sys_user_role ur
+        ON ur.user_id = u.id
+        JOIN sys_role_permission rp
+        ON rp.role_id = ur.role_id
+        JOIN sys_permission p
+        ON p.id = rp.permission_id
+        WHERE u.username = #{username}
+    </select>
+
+</mapper>

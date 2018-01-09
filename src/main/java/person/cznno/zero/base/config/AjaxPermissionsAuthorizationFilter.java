@@ -1,8 +1,12 @@
 package person.cznno.zero.base.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import person.cznno.zero.base.enums.AuthStatusEnum;
+import person.cznno.zero.base.factory.BaseResponseFactory;
+import person.cznno.zero.base.model.response.Response;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -22,7 +26,9 @@ public class AjaxPermissionsAuthorizationFilter extends FormAuthenticationFilter
             res.setCharacterEncoding("UTF-8");
             res.setContentType("application/json");
             out = response.getWriter();
-            out.println("");
+            ObjectMapper objectMapper = new ObjectMapper();
+            Response restResponse = BaseResponseFactory.get(AuthStatusEnum.REQUIRE_LOGIN);
+            out.println(objectMapper.writeValueAsString(restResponse));
         } catch (Exception e) {
         } finally {
             if (null != out) {

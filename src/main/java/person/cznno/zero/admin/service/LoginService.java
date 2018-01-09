@@ -1,37 +1,32 @@
 package person.cznno.zero.admin.service;
 
 import person.cznno.zero.admin.dto.LoginUserDTO;
-import person.cznno.zero.base.model.response.Response;
+import person.cznno.zero.admin.dto.UserInfoDTO;
+import person.cznno.zero.base.enums.AuthStatusEnum;
 
+/**
+ * 登录登出业务
+ * Created by cznno
+ * Date: 18-1-8
+ */
 public interface LoginService {
+
     /**
      * 登录表单提交
-     *
-     * @param jsonObject
-     * @return
+     * @param userDTO 用户登录信息
+     * @return 登录结果
      */
-    Response authLogin(LoginUserDTO jsonObject);
-
-    /**
-     * 根据用户名和密码查询对应的用户
-     *
-     * @param username 用户名
-     * @param password 密码
-     * @return
-     */
-    LoginUserDTO getUser(String username, String password);
+    AuthStatusEnum authLogin(LoginUserDTO userDTO);
 
     /**
      * 查询当前登录用户的权限等信息
-     *
-     * @return
+     * @return 登录结果
      */
-    void getInfo();
+    UserInfoDTO getInfo(String username);
 
     /**
      * 退出登录
-     *
-     * @return
+     * @return 退出登录结果
      */
-    void logout();
+    AuthStatusEnum logout();
 }

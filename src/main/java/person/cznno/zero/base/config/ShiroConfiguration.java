@@ -26,6 +26,7 @@ public class ShiroConfiguration {
      */
     @Bean(name = "shiroFilter")
     public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager) {
+
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         //Shiro的核心安全接口,这个属性是必须的
         shiroFilterFactoryBean.setSecurityManager(securityManager);
@@ -51,13 +52,14 @@ public class ShiroConfiguration {
         filterChainDefinitionMap.put("/error", "anon");
         filterChainDefinitionMap.put("/**", "authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
+
+//        shiroFilterFactoryBean.setLoginUrl("/login/auth");
         return shiroFilterFactoryBean;
     }
 
     /**
      * 不指定名字的话，自动创建一个方法名第一个字母小写的bean
      */
-
     @Bean
     public SecurityManager securityManager() {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
@@ -96,7 +98,6 @@ public class ShiroConfiguration {
     /**
      * Shiro生命周期处理器
      */
-
     @Bean
     public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
         return new LifecycleBeanPostProcessor();

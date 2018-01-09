@@ -2,15 +2,10 @@ package person.cznno.zero.admin.dao;
 
 import org.springframework.stereotype.Repository;
 import person.cznno.zero.admin.entity.UserRoleEntity;
+import person.cznno.zero.base.MyMapper;
 
 @Repository
-public interface UserRoleDao {
+public interface UserRoleDao extends MyMapper<UserRoleEntity> {
 
-    UserRoleEntity selectById(Integer id);
 
-    int insertSelective(UserRoleEntity record);
-
-    int updateByIdSelective(UserRoleEntity record);
-
-    int deleteById(Integer id);
 }

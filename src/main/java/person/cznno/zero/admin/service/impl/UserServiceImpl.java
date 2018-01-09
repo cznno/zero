@@ -1,53 +1,62 @@
 package person.cznno.zero.admin.service.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import org.apache.shiro.crypto.hash.SimpleHash;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import person.cznno.zero.admin.dao.UserDao;
 import person.cznno.zero.admin.entity.UserEntity;
 import person.cznno.zero.admin.service.UserService;
 
-import javax.annotation.Resource;
-import java.util.List;
-
 /**
  * Created by cznno
- * Date: 17-12-28
+ * Date: 18-1-5
  */
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Resource
+    @Autowired
     private UserDao userDao;
 
     @Override
-    public List<UserEntity> getAll(UserEntity city) {
-        if (city.getPage() != null && city.getRows() != null) {
-            PageHelper.startPage(city.getPage(), city.getRows());
-        }
-        return userDao.selectAll();
+    public PageInfo<UserEntity> selectAll(UserEntity entity) {
+        return PageHelper.startPage(entity.getPage(), entity.getRows())
+                .doSelectPageInfo(() -> userDao.selectAll());
     }
 
     @Override
-    public UserEntity getUserByUsernameAndPassword(String username, String password) {
-        return userDao.selectByUsernameAndPassword(username, password);
+    public UserEntity selectById(Integer id) {
+        return  userDao.selectByPrimaryKey(id);
     }
 
     @Override
-    public UserEntity getById(Integer id) {
-        return userDao.selectByPrimaryKey(id);
-    }
+    public int insertSelective(UserEntity user) {
 
-    @Override
-    public void deleteById(Integer id) {
-        userDao.deleteByPrimaryKey(id);
-    }
+        int res = 0;
+        UserEntity resultUser = userDao.selectByUsername(user.getUsername());
 
-    @Override
-    public void save(UserEntity country) {
-        if (country.getId() != null) {
-            userDao.updateByPrimaryKey(country);
+        if (resultUser != null) {
+//            resEnum = AuthStatusEnum.REGISTER_REPEAT;
+            //TODO throw exception
         } else {
-            userDao.insert(country);
+            //TODO algorithm name enum
+            String algorithmName = "MD5";
+            SimpleHash simpleHash = new SimpleHash(algorithmName, user.getPassword(), user.getUsername(), 2);
+            user.setPassword(simpleHash.toHex());
+
+            res = userDao.insertSelective(user);
         }
+        return res;
+    }
+
+    @Override
+    public int updateByIdSelective(UserEntity entity) {
+        return userDao.updateByPrimaryKey(entity);
+    }
+
+    @Override
+    public int deleteById(Integer id) {
+        return userDao.deleteByPrimaryKey(id);
     }
 }

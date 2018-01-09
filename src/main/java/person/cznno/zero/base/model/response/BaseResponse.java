@@ -1,6 +1,10 @@
 package person.cznno.zero.base.model.response;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -10,9 +14,13 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class BaseResponse<T>  implements Response<T>  {
+@NoArgsConstructor
+@AllArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonPropertyOrder({"success", "msg", "data"})
+public class BaseResponse implements Response {
 
     private Boolean success;
     private String msg;
-    private T data;
+    private Object data;
 }
