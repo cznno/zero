@@ -1,7 +1,7 @@
 package person.cznno.zero.base.factory;
 
 import person.cznno.zero.base.enums.StatusEnum;
-import person.cznno.zero.base.model.response.Response;
+import person.cznno.zero.base.dto.response.Response;
 
 /**
  * 回复消息工厂接口

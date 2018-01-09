@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import person.cznno.zero.admin.dao.UserDao;
 import person.cznno.zero.admin.entity.UserEntity;
+import person.cznno.zero.admin.exception.UserDuplicateException;
 import person.cznno.zero.admin.service.UserService;
 
 /**
@@ -26,6 +27,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public PageInfo<UserEntity> selectAll(int page,int rows) {
+        return PageHelper.startPage(page,rows)
+                .doSelectPageInfo(() -> userDao.selectAll());
+    }
+
+    @Override
     public UserEntity selectById(Integer id) {
         return  userDao.selectByPrimaryKey(id);
     }
@@ -35,8 +42,8 @@ public class UserServiceImpl implements UserService {
 
         int res = 0;
         UserEntity resultUser = userDao.selectByUsername(user.getUsername());
-
         if (resultUser != null) {
+            throw new UserDuplicateException();
 //            resEnum = AuthStatusEnum.REGISTER_REPEAT;
             //TODO throw exception
         } else {

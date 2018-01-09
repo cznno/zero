@@ -9,6 +9,9 @@
         <collection property="menuList" ofType="java.lang.String">
             <id column="menu_name"/>
         </collection>
+        <collection property="roleList" ofType="java.lang.String">
+            <id column="role_name"/>
+        </collection>
         <collection property="permissionList" ofType="java.lang.String">
             <id column="permission_code"/>
         </collection>
@@ -16,18 +19,21 @@
 
     <select id="selectUserInfoByUsername" resultMap="loginUserMap" parameterType="java.lang.String">
         SELECT
-        u.id,
-        u.username,
-        u.real_name,
-        p.menu_name,
-        p.permission_code
+          u.id,
+          u.username,
+          u.real_name,
+          r.role_name,
+          p.menu_name,
+          p.permission_code
         FROM sys_user u
-        JOIN sys_user_role ur
-        ON ur.user_id = u.id
-        JOIN sys_role_permission rp
-        ON rp.role_id = ur.role_id
-        JOIN sys_permission p
-        ON p.id = rp.permission_id
+          JOIN sys_user_role ur
+            ON ur.user_id = u.id
+          JOIN sys_role r
+            ON ur.role_id = r.id
+          JOIN sys_role_permission rp
+            ON rp.role_id = ur.role_id
+          JOIN sys_permission p
+            ON p.id = rp.permission_id
         WHERE u.username = #{username}
     </select>
 

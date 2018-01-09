@@ -1,7 +1,10 @@
 package person.cznno.zero.base.enums;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
- * CRUD结果信息
+ * CRUD操作
  * Created by cznno
  * Date: 17-12-28
  */
@@ -10,6 +13,10 @@ public enum CrudStatusEnum implements BaseStatusEnum {
     GENERAL_SUCCESS("数据操作成功", true),
     PRARM_ERROR("参数错误", false),
     GENERAL_FAIL("数据操作失败", false),
+    SELECT("查询操作", true),
+    INSERT("插入操作", true),
+    UPDATE("更新操作", true),
+    DELETE("删除操作", true),
 
     SELECT_SUCCESS("查询成功", true),
     INSERT_SUCCESS("插入成功", true),

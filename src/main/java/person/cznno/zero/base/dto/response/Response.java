@@ -1,4 +1,4 @@
-package person.cznno.zero.base.model.response;
+package person.cznno.zero.base.dto.response;
 
 /**
  * 返回消息接口

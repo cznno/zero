@@ -22,5 +22,4 @@ public class CheckException extends RuntimeException {
 	public CheckException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
 		super(message, cause, enableSuppression, writableStackTrace);
 	}
-
 }

@@ -1,9 +1,10 @@
 package person.cznno.zero.admin.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import person.cznno.zero.base.model.entity.BaseEntity;
+import person.cznno.zero.base.entity.BaseEntity;
 
 import javax.persistence.Table;
 import java.util.Date;

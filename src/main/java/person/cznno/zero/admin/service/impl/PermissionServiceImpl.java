@@ -25,6 +25,12 @@ public class PermissionServiceImpl implements PermissionService {
     }
 
     @Override
+    public PageInfo<PermissionEntity> selectAll(int page, int rows) {
+        return PageHelper.startPage(page, rows)
+                .doSelectPageInfo(() -> permissionDao.selectAll());
+    }
+
+    @Override
     public PermissionEntity selectById(Integer id) {
         return permissionDao.selectByPrimaryKey(id);
     }

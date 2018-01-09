@@ -8,6 +8,12 @@ import person.cznno.zero.admin.dao.RolePermissionDao;
 import person.cznno.zero.admin.entity.RolePermissionEntity;
 import person.cznno.zero.admin.service.RolePermissionService;
 
+import java.util.List;
+
+/**
+ * Created by cznno
+ * Date: 18-1-5
+ */
 @Service
 public class RolePermissionServiceImpl implements RolePermissionService {
 
@@ -26,8 +32,18 @@ public class RolePermissionServiceImpl implements RolePermissionService {
     }
 
     @Override
+    public List<RolePermissionEntity> selectByRoleId(Integer roleId) {
+        return rolePermissionDao.selectByRoleId(roleId);
+    }
+
+    @Override
     public int insertSelective(RolePermissionEntity rolePermissionEntity) {
         return rolePermissionDao.insertSelective(rolePermissionEntity);
+    }
+
+    @Override
+    public int insertBatchSelective(List<RolePermissionEntity> rolePermissionList) {
+        return rolePermissionDao.insertBatchSelective(rolePermissionList);
     }
 
     @Override
@@ -38,5 +54,10 @@ public class RolePermissionServiceImpl implements RolePermissionService {
     @Override
     public int deleteById(Integer id) {
         return rolePermissionDao.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public int deleteBatchByRoleId(List<RolePermissionEntity> rolePermissionList) {
+        return rolePermissionDao.deleteBatchByRoleId(rolePermissionList);
     }
 }

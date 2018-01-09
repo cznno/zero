@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import person.cznno.zero.base.model.entity.BaseEntity;
+import person.cznno.zero.base.entity.BaseEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Table;

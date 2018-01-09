@@ -13,7 +13,10 @@ import person.cznno.zero.admin.dto.LoginUserDTO;
 import person.cznno.zero.admin.dto.UserInfoDTO;
 import person.cznno.zero.admin.service.LoginService;
 import person.cznno.zero.base.enums.AuthStatusEnum;
-
+/**
+ * Created by cznno
+ * Date: 18-1-5
+ */
 @Slf4j
 @Service
 public class LoginServiceImpl implements LoginService {
@@ -50,6 +53,7 @@ public class LoginServiceImpl implements LoginService {
     public UserInfoDTO getInfo(String username) {
         Session session = SecurityUtils.getSubject().getSession();
         UserInfoDTO userInfoDTO = loginDao.selectUserInfoByUsername(username);
+        session.setAttribute("role", userInfoDTO.getRoleList());
         session.setAttribute("permission", userInfoDTO.getPermissionList());
         return userInfoDTO;
     }

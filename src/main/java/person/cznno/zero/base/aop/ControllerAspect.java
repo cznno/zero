@@ -2,8 +2,6 @@ package person.cznno.zero.base.aop;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.IncorrectCredentialsException;
-import org.apache.shiro.authc.UnknownAccountException;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -13,10 +11,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import person.cznno.zero.base.dto.response.BaseResponse;
+import person.cznno.zero.base.dto.response.Response;
 import person.cznno.zero.base.enums.AuthStatusEnum;
 import person.cznno.zero.base.exception.CheckException;
-import person.cznno.zero.base.model.response.BaseResponse;
-import person.cznno.zero.base.model.response.Response;
+import person.cznno.zero.base.exception.NoPermissionException;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -68,10 +67,10 @@ public class ControllerAspect {
         // 已知异常
         if (e instanceof CheckException) {
             result.setMsg(e.getLocalizedMessage());
-        } else if (e instanceof UnknownAccountException) {
-            result.setMsg(AuthStatusEnum.LOGIN_FAIL_NOT_FOUND.getMsg());
-        }else if (e instanceof IncorrectCredentialsException) {
+        } else if (e instanceof AuthenticationException) {
             result.setMsg(AuthStatusEnum.LOGIN_FAIL_NOT_MATCH.getMsg());
+        } else if (e instanceof NoPermissionException) {
+            result.setMsg(AuthStatusEnum.PERMISSION_DENY.getMsg());
         } else {
             log.error(pjp.getSignature() + " error ", e);
             //TODO 未知的异常，应该格外注意，可以发送邮件通知等

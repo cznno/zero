@@ -20,6 +20,8 @@ public class UserInfoDTO {
     private String realName;
     //菜单列表
     private List<String> menuList;
+    //角色列表
+    private List<String> roleList;
     //权限列表
     private List<String> permissionList;
 }

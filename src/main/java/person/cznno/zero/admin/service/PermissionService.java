@@ -18,6 +18,14 @@ public interface PermissionService {
     PageInfo<PermissionEntity> selectAll(PermissionEntity entity);
 
     /**
+     * 查询所有权限
+     * @param page 页码
+     * @param rows 每页大小
+     * @return 权限分页查询结果
+     */
+    PageInfo<PermissionEntity> selectAll(int page,int rows);
+
+    /**
      * 按id查询权限
      *
      * @param id 主键

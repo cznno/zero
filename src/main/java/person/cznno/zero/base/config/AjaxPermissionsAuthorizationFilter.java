@@ -6,7 +6,7 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import person.cznno.zero.base.enums.AuthStatusEnum;
 import person.cznno.zero.base.factory.BaseResponseFactory;
-import person.cznno.zero.base.model.response.Response;
+import person.cznno.zero.base.dto.response.Response;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;

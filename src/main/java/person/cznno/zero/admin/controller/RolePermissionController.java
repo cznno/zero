@@ -1,22 +1,23 @@
 package person.cznno.zero.admin.controller;
 
-import lombok.extern.slf4j.Slf4j;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import person.cznno.zero.admin.entity.RolePermissionEntity;
 import person.cznno.zero.admin.service.RolePermissionService;
-import person.cznno.zero.base.factory.BaseResponseFactory;
+import person.cznno.zero.base.dto.response.Response;
+import person.cznno.zero.base.enums.CrudStatusEnum;
+import person.cznno.zero.base.factory.CrudResponseFactory;
 import person.cznno.zero.base.factory.PagedResponseFactory;
-import person.cznno.zero.base.model.response.Response;
 
 /**
  * 角色权限CRUD
  * Created by cznno
  * Date: 18-1-8
  */
-@Slf4j
 @RestController
-@RequestMapping("/admin/rolePermission")
+@RequestMapping("/admin/role_permission")
+@RequiresRoles("admin")
 public class RolePermissionController {
 
     @Autowired
@@ -24,6 +25,7 @@ public class RolePermissionController {
 
     /**
      * 查询所有角色权限
+     *
      * @param entity 角色权限实体
      * @return 分页角色权限
      */
@@ -40,7 +42,7 @@ public class RolePermissionController {
      */
     @GetMapping("/{id}")
     public Response SelectById(@PathVariable Integer id) {
-        return BaseResponseFactory.get(rolePermissionService.selectById(id));
+        return CrudResponseFactory.get(CrudStatusEnum.SELECT, rolePermissionService.selectById(id));
     }
 
     /**
@@ -51,17 +53,18 @@ public class RolePermissionController {
      */
     @PostMapping
     public Response insert(@RequestBody RolePermissionEntity rolePermission) {
-        return BaseResponseFactory.get(rolePermissionService.insertSelective(rolePermission));
+        return CrudResponseFactory.get(CrudStatusEnum.INSERT, rolePermissionService.insertSelective(rolePermission));
     }
 
     /**
      * 按id修改角色权限
+     *
      * @param rolePermission 角色权限实体
      * @return 修改条数
      */
     @PutMapping
     public Response updateById(@RequestBody RolePermissionEntity rolePermission) {
-        return BaseResponseFactory.get(rolePermissionService.updateByIdSelective(rolePermission));
+        return CrudResponseFactory.get(CrudStatusEnum.UPDATE, rolePermissionService.updateByIdSelective(rolePermission));
     }
 
     /**
@@ -72,6 +75,6 @@ public class RolePermissionController {
      */
     @DeleteMapping("/{id}")
     public Response deleteById(@PathVariable Integer id) {
-        return BaseResponseFactory.get(rolePermissionService.deleteById(id));
+        return CrudResponseFactory.get(CrudStatusEnum.DELETE, rolePermissionService.deleteById(id));
     }
 }

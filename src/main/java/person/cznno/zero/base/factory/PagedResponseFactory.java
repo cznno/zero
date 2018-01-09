@@ -3,9 +3,9 @@ package person.cznno.zero.base.factory;
 import com.github.pagehelper.PageInfo;
 import person.cznno.zero.base.enums.BaseStatusEnum;
 import person.cznno.zero.base.enums.CrudStatusEnum;
-import person.cznno.zero.base.model.response.BaseResponse;
-import person.cznno.zero.base.model.response.PagedResponse;
-import person.cznno.zero.base.model.response.Response;
+import person.cznno.zero.base.dto.response.BaseResponse;
+import person.cznno.zero.base.dto.response.PagedResponse;
+import person.cznno.zero.base.dto.response.Response;
 
 /**
  * 分页返回消息工厂
