@@ -12,12 +12,12 @@ import person.cznno.zero.admin.service.*;
 import person.cznno.zero.base.exception.ParamErrorException;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
+ * 权限控制实现
  * Created by cznno
  * Date: 18-1-9
  */
@@ -26,9 +26,9 @@ import java.util.stream.Collectors;
 public class AccessControlServiceImpl implements AccessControlService {
 
     @Autowired
-    private UserRoleService userRoleService;
-    @Autowired
     private UserService userService;
+    @Autowired
+    private UserRoleService userRoleService;
     @Autowired
     private RolePermissionService rolePermissionService;
     @Autowired
@@ -90,48 +90,30 @@ public class AccessControlServiceImpl implements AccessControlService {
     @Override
     public Map<Boolean, List<UserEntity>> selectUserGroupByRoleId(Integer roleId) {
 
-        Map<Boolean, List<UserEntity>> userMap = null;
-        try {
-            List<UserRoleEntity> userRoleList = new ArrayList<>(userRoleService.selectByRoleId(roleId));
+        List<UserRoleEntity> userRoleList = new ArrayList<>(userRoleService.selectByRoleId(roleId));
 
-            List<Integer> userIdList = userRoleList.stream()
-                    .map(UserRoleEntity::getUserId)
-                    .collect(Collectors.toList());
+        List<Integer> userIdList = userRoleList.stream()
+                .map(UserRoleEntity::getUserId)
+                .collect(Collectors.toList());
 
-            List<UserEntity> userList = new ArrayList<>();
-//            userList.addAll(userService.selectAll().getList());
+        List<UserEntity> userList = new ArrayList<>(userService.selectAll(0, 0).getList());
 
-            userMap = userList.stream()
-                    .collect(Collectors.partitioningBy(user -> userIdList.contains(user.getId())));
-        } catch (Exception e) {
-            log.error("查询所有用户并按是否有角色分组", e);
-        }
-        return userMap;
+        return userList.stream()
+                .collect(Collectors.partitioningBy(o -> userIdList.contains(o.getId())));
     }
 
     @Override
-    public List<PermissionEntity> selectPermissionMarkedByRoleId(@RequestParam("id") Integer roleId) {
+    public Map<Boolean, List<PermissionEntity>> selectPermissionGroupByRoleId(@RequestParam("id") Integer roleId) {
 
-        try {
-            List<Integer> menuIdList =
-                    rolePermissionService.selectByRoleId(roleId).stream()
-                            .map(RolePermissionEntity::getPermissionId)
-                            .collect(Collectors.toList());
+        List<Integer> menuIdList =
+                rolePermissionService.selectByRoleId(roleId).stream()
+                        .map(RolePermissionEntity::getPermissionId)
+                        .collect(Collectors.toList());
 
-            List<PermissionEntity> permissionList = permissionService.selectAll(0, 0).getList();
+        List<PermissionEntity> permissionList = permissionService.selectAll(0, 0).getList();
 
-            List<Integer> list...
-            List<Object> objList...
-            for (Object o : objList) {
-                if(list.contains(o.getInt()))
-                    remove o;
-            }
-            menuList.stream().filter(o ->
-                    menuIdList.contains(o.getId())
-            );
-        } catch (Exception e) {
-
-        }
-        return null;
+        return permissionList
+                .stream()
+                .collect(Collectors.partitioningBy(o -> menuIdList.contains(o.getId())));
     }
 }

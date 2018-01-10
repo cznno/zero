@@ -5,11 +5,11 @@ import person.cznno.zero.admin.entity.RolePermissionEntity;
 import person.cznno.zero.admin.entity.UserEntity;
 import person.cznno.zero.admin.entity.UserRoleEntity;
 
-import java.awt.*;
 import java.util.List;
 import java.util.Map;
 
 /**
+ * 权限控制
  * Created by cznno
  * Date: 18-1-9
  */
@@ -18,16 +18,16 @@ public interface AccessControlService {
     /**
      * 修改角色-权限关联
      *
-     * @param rolePermissionList
-     * @return
+     * @param rolePermissionList 角色权限List
+     * @return 修改的条数
      */
     int updateRolePermissionRelations(List<RolePermissionEntity> rolePermissionList);
 
     /**
      * 修改角色-菜单关联
      *
-     * @param userRoleList
-     * @return
+     * @param userRoleList 角色菜单List
+     * @return 修改的条数
      */
     int updateUserRoleRelations(List<UserRoleEntity> userRoleList);
 
@@ -40,10 +40,10 @@ public interface AccessControlService {
     Map<Boolean, List<UserEntity>> selectUserGroupByRoleId(Integer roleId);
 
     /**
-     * 按角色id查询全部权限，并按照是否有权限标注
+     * 按角色id查询全部权限，并按照是否有权限分类
      *
      * @param roleId 角色id
-     * @return
+     * @return 权限信息
      */
-    List<PermissionEntity> selectPermissionMarkedByRoleId(Integer roleId);
+    Map<Boolean, List<PermissionEntity>> selectPermissionGroupByRoleId(Integer roleId);
 }
