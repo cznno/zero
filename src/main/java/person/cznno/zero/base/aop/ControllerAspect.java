@@ -14,8 +14,10 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import person.cznno.zero.base.dto.response.BaseResponse;
 import person.cznno.zero.base.dto.response.Response;
 import person.cznno.zero.base.enums.AuthStatusEnum;
+import person.cznno.zero.base.enums.RequestVerifyEnum;
 import person.cznno.zero.base.exception.CheckException;
 import person.cznno.zero.base.exception.NoPermissionException;
+import person.cznno.zero.base.exception.ParamErrorException;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -65,12 +67,14 @@ public class ControllerAspect {
         result.setSuccess(false);
 
         // 已知异常
-        if (e instanceof CheckException) {
-            result.setMsg(e.getLocalizedMessage());
-        } else if (e instanceof AuthenticationException) {
+        if (e instanceof AuthenticationException) {
             result.setMsg(AuthStatusEnum.LOGIN_FAIL_NOT_MATCH.getMsg());
         } else if (e instanceof NoPermissionException) {
             result.setMsg(AuthStatusEnum.PERMISSION_DENY.getMsg());
+        } else if (e instanceof ParamErrorException) {
+            result.setMsg(RequestVerifyEnum.PARAM_ERROR.getMsg());
+        } else if (e instanceof CheckException) {
+            result.setMsg(e.getLocalizedMessage());
         } else {
             log.error(pjp.getSignature() + " error ", e);
             //TODO 未知的异常，应该格外注意，可以发送邮件通知等
