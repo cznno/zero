@@ -8,7 +8,7 @@ public enum RequestVerifyEnum implements StatusEnum {
 
     PARAM_ERROR("请求的参数不合法");
 
-    private String msg;
+    private final String msg;
 
     RequestVerifyEnum(String msg) {
         this.msg = msg;

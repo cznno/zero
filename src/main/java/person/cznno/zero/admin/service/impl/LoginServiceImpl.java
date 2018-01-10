@@ -27,8 +27,8 @@ public class LoginServiceImpl implements LoginService {
     /**
      * 登录表单提交
      *
-     * @param userDTO
-     * @return
+     * @param userDTO 用户登录信息
+     * @return 登录验证信息
      */
     @Override
     public AuthStatusEnum authLogin(LoginUserDTO userDTO) throws AuthenticationException {
@@ -47,7 +47,7 @@ public class LoginServiceImpl implements LoginService {
     /**
      * 查询当前登录用户的权限等信息
      *
-     * @return
+     * @return 用户的权限,菜单等信息
      */
     @Override
     public UserInfoDTO getInfo(String username) {
@@ -61,7 +61,7 @@ public class LoginServiceImpl implements LoginService {
     /**
      * 退出登录
      *
-     * @return
+     * @return 成功与否
      */
     @Override
     public AuthStatusEnum logout() {

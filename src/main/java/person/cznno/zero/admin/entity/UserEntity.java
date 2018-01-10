@@ -16,7 +16,7 @@ import java.util.Date;
  * Date: 2017-12-28 14:25:50
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode()
 @Table(name = "sys_user")
 public class UserEntity extends BaseEntity {
 

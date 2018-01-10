@@ -1,8 +1,5 @@
 package person.cznno.zero.base.enums;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * CRUD操作
  * Created by cznno
@@ -30,8 +27,8 @@ public enum CrudStatusEnum implements BaseStatusEnum {
     DELETE_FAIL("删除失败", false),
     DELETE_FAIL_CONSTRAINT("操作失败,存在关联", false);
 
-    private String msg;
-    private Boolean success;
+    private final String msg;
+    private final Boolean success;
 
     CrudStatusEnum(String msg, Boolean success) {
         this.msg = msg;

@@ -7,7 +7,6 @@ import person.cznno.zero.admin.entity.PermissionEntity;
 import person.cznno.zero.admin.service.PermissionService;
 import person.cznno.zero.base.dto.response.Response;
 import person.cznno.zero.base.enums.CrudStatusEnum;
-import person.cznno.zero.base.factory.BaseResponseFactory;
 import person.cznno.zero.base.factory.CrudResponseFactory;
 import person.cznno.zero.base.factory.PagedResponseFactory;
 

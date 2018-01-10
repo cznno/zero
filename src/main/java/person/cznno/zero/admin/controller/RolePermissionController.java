@@ -71,7 +71,7 @@ public class RolePermissionController {
      * 按id删除角色权限
      *
      * @param id 主键
-     * @return
+     * @return 删除的条数
      */
     @DeleteMapping("/{id}")
     public Response deleteById(@PathVariable Integer id) {

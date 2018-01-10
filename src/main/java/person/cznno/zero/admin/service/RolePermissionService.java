@@ -29,9 +29,9 @@ public interface RolePermissionService {
     RolePermissionEntity selectById(Integer id);
 
     /**
-     * 按角色id查询角色
-     * @param roleId
-     * @return
+     * 按角色id查询角色权限
+     * @param roleId 角色id
+     * @return 角色权限实体集合
      */
     List<RolePermissionEntity> selectByRoleId(Integer roleId);
 
@@ -69,7 +69,7 @@ public interface RolePermissionService {
 
     /**
      * 从角色权限List中取出id, 批量删除角色权限
-     * @param rolePermissionList
+     * @param rolePermissionList 角色权限集合
      * @return 删除数量
      */
     int deleteBatchByRoleId(List<RolePermissionEntity> rolePermissionList);

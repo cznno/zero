@@ -17,8 +17,6 @@ import person.cznno.zero.admin.entity.UserEntity;
 import person.cznno.zero.base.exception.NoPermissionException;
 import person.cznno.zero.util.VerifyUtil;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Slf4j
@@ -34,8 +32,8 @@ public class UserRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         Session session = SecurityUtils.getSubject().getSession();
         //查询用户的权限
-        List<String> role = (List<String>)session.getAttribute("role"); //FIXME 类型转换警告
-        List<String> permission = (List<String>)session.getAttribute("permission"); //FIXME 类型转换警告
+        List<String> role = (List<String>) session.getAttribute("role"); //FIXME 类型转换警告
+        List<String> permission = (List<String>) session.getAttribute("permission"); //FIXME 类型转换警告
         log.info("permission的值为:" + permission);
         if (VerifyUtil.isNullOrEmpty(permission)) {
             throw new NoPermissionException();

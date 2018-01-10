@@ -35,14 +35,14 @@ public interface PermissionService {
 
     /**
      * 插入权限
-     * @param entity
+     * @param entity 权限实体
      * @return 插入结果数
      */
     int insertSelective(PermissionEntity entity);
 
     /**
      * 按id更新权限
-     * @param entity
+     * @param entity 权限实体
      * @return 更新结果数
      */
     int updateByIdSelective(PermissionEntity entity);

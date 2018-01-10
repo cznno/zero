@@ -18,11 +18,7 @@ public class CrudResponseFactory extends BaseResponseFactory {
         CrudStatusEnum resEnum = CrudStatusEnum.GENERAL_FAIL;
         Boolean success;
 
-        if (isNullOrEmpty(data) || "0".equals(data.toString())) {
-            success = false;
-        } else {
-            success = true;
-        }
+        success = !isNullOrEmpty(data) && !"0".equals(data.toString());
 
         switch (anEnum) {
             case SELECT:

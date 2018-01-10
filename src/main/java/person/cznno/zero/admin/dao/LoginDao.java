@@ -2,7 +2,6 @@ package person.cznno.zero.admin.dao;
 
 import org.springframework.stereotype.Repository;
 import person.cznno.zero.admin.dto.UserInfoDTO;
-import person.cznno.zero.admin.entity.PermissionEntity;
 
 /**
  * Created by cznno

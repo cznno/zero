@@ -1,7 +1,6 @@
 package person.cznno.zero.admin.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import person.cznno.zero.base.entity.BaseEntity;
@@ -15,7 +14,7 @@ import java.util.Date;
  * Date: 2017-12-28 14:25:50
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode
 @Table(name = "sys_permission")
 public class PermissionEntity extends BaseEntity {
 

@@ -1,9 +1,8 @@
 package person.cznno.zero.base.factory;
 
-import person.cznno.zero.base.enums.BaseStatusEnum;
 import person.cznno.zero.base.dto.response.BaseResponse;
 import person.cznno.zero.base.dto.response.Response;
-import person.cznno.zero.base.enums.CrudStatusEnum;
+import person.cznno.zero.base.enums.BaseStatusEnum;
 
 /**
  * 基础返回消息工厂

@@ -27,20 +27,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public PageInfo<UserEntity> selectAll(int page,int rows) {
-        return PageHelper.startPage(page,rows)
+    public PageInfo<UserEntity> selectAll(int page, int rows) {
+        return PageHelper.startPage(page, rows)
                 .doSelectPageInfo(() -> userDao.selectAll());
     }
 
     @Override
     public UserEntity selectById(Integer id) {
-        return  userDao.selectByPrimaryKey(id);
+        return userDao.selectByPrimaryKey(id);
     }
 
     @Override
     public int insertSelective(UserEntity user) {
 
-        int res = 0;
+        int res;
         UserEntity resultUser = userDao.selectByUsername(user.getUsername());
         if (resultUser != null) {
             throw new UserDuplicateException();

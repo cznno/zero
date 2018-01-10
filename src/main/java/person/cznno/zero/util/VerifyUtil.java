@@ -7,9 +7,7 @@ package person.cznno.zero.util;
 public class VerifyUtil {
 
     public static Boolean isNullOrEmpty(Object o) {
-        if (null == o || "".equals(o.toString()))
-            return true;
-        return false;
+        return null == o || "".equals(o.toString());
     }
 
     public static Boolean isNotNullOrEmpty(Object o) {
