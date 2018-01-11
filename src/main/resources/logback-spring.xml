@@ -144,12 +144,12 @@
         </filter>
     </appender>
 
-    <logger name="org.springframework" level="DEBUG" />
-    <logger name="*" level="DEBUG" />
+    <!--<logger name="org.springframework" level="DEBUG" />-->
+    <!--<logger name="*" level="DEBUG" />-->
 
     <springProfile name="default">
     <!--<springProfile name="dev">-->
-        <logger name="com.fibrlink" level="debug"/>
+        <logger name="*" level="debug"/>
         <root level="debug">
             <appender-ref ref="FILEERROR" />
             <appender-ref ref="FILEWARN" />
@@ -161,7 +161,7 @@
         </root>
     </springProfile>
     <springProfile name="prod">
-        <logger name="com.fibrlink" level="info"/>
+        <logger name="*" level="info"/>
             <!-- 生产环境下，将此级别配置为适合的级别，以免日志文件太多或影响程序性能 -->
         <root level="debug">
             <appender-ref ref="FILEERROR" />
@@ -171,7 +171,7 @@
         </root>
     </springProfile>
     <springProfile name="dev">
-        <logger name="com.fibrlink" level="debug"/>
+        <logger name="*" level="debug"/>
         <root level="debug">
             <appender-ref ref="FILEERROR" />
             <appender-ref ref="FILEWARN" />

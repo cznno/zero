@@ -1,4 +1,4 @@
-package person.cznno.zero.base.model.response;
+package person.cznno.zero.base.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;

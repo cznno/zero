@@ -18,8 +18,8 @@ public enum AuthStatusEnum implements BaseStatusEnum {
 	REGISTER_FAIL(false,"注册失败"),
 	REGISTER_REPEAT(false,"注册失败,用户重复");
 
-    private Boolean success;
-    private String msg;
+    private final Boolean success;
+    private final String msg;
 
     AuthStatusEnum(Boolean success, String msg) {
         this.success = success;

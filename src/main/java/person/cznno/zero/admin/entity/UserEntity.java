@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import person.cznno.zero.base.model.entity.BaseEntity;
+import person.cznno.zero.base.entity.BaseEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Table;
@@ -16,7 +16,7 @@ import java.util.Date;
  * Date: 2017-12-28 14:25:50
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode()
 @Table(name = "sys_user")
 public class UserEntity extends BaseEntity {
 

@@ -3,6 +3,8 @@ package person.cznno.zero.admin.service;
 import com.github.pagehelper.PageInfo;
 import person.cznno.zero.admin.entity.UserRoleEntity;
 
+import java.util.List;
+
 /**
  * 用户角色业务
  * Created by cznno
@@ -26,8 +28,10 @@ public interface UserRoleService {
      */
     UserRoleEntity selectById(Integer id);
 
+    List<UserRoleEntity> selectByRoleId(Integer roleId);
+
     /**
-     * 插入角色
+     * 插入用户角色
      *
      * @param userRole 用户角色实体
      * @return 插入结果数
@@ -35,7 +39,15 @@ public interface UserRoleService {
     int insertSelective(UserRoleEntity userRole);
 
     /**
-     * 按id更新角色
+     * 批量插入用户角色
+     *
+     * @param userRoleList 用户角色实体List
+     * @return 插入数量
+     */
+    int insertBatch(List<UserRoleEntity> userRoleList);
+
+    /**
+     * 按id更新用户角色
      *
      * @param userRole 用户角色实体
      * @return 更新结果数
@@ -43,10 +55,18 @@ public interface UserRoleService {
     int updateByIdSelective(UserRoleEntity userRole);
 
     /**
-     * 按id删除角色
+     * 按id删除用户角色
      *
      * @param id 主键
      * @return 删除结果数
      */
     int deleteById(Integer id);
+
+    /**
+     * 从用户角色List中取出角色id做条件进行批量删除
+     *
+     * @param userRoleList 用户角色列表
+     * @return 删除结果数量
+     */
+    int deleteBatchByRoleId(List<UserRoleEntity> userRoleList);
 }

@@ -1,9 +1,7 @@
-package person.cznno.zero.base.model.entity;
+package person.cznno.zero.base.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Data;
-
 import javax.persistence.*;
 
 /**

@@ -19,6 +19,13 @@ public interface UserService {
     PageInfo<UserEntity> selectAll(UserEntity entity);
 
     /**
+     * 查询所有用户
+     * 默认分页参数
+     * @return 分页查询结果
+     */
+    PageInfo<UserEntity> selectAll(int page,int rows);
+
+    /**
      * 按id查询用户
      *
      * @param id 主键

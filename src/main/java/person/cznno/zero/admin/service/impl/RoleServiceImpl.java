@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import person.cznno.zero.admin.dao.RoleDao;
 import person.cznno.zero.admin.entity.RoleEntity;
 import person.cznno.zero.admin.service.RoleService;
-
+/**
+ * Created by cznno
+ * Date: 18-1-5
+ */
 @Service
 public class RoleServiceImpl implements RoleService {
 

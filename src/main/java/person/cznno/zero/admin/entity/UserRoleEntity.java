@@ -3,8 +3,7 @@ package person.cznno.zero.admin.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import person.cznno.zero.base.model.entity.BaseEntity;
-
+import person.cznno.zero.base.entity.BaseEntity;
 import javax.persistence.Table;
 import java.util.Date;
 
@@ -14,7 +13,7 @@ import java.util.Date;
  * Date: 2017-12-28 14:25:50
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode
 @Table(name="sys_user_role")
 public class UserRoleEntity extends BaseEntity{
 
