@@ -1,5 +1,6 @@
 package person.cznno.zero.admin.service;
 
+import com.github.pagehelper.PageInfo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 import person.cznno.zero.admin.entity.RoleEntity;
+import person.cznno.zero.admin.entity.RolePermissionEntity;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -21,6 +23,15 @@ public class RoleServiceTest {
 
     @Autowired
     private RoleService roleService;
+
+    @Test
+    public void testSelectAll() {
+        RoleEntity entity = new RoleEntity();
+        entity.setPage(1);
+        entity.setRows(5);
+        PageInfo<RoleEntity> pageInfo2 = roleService.selectAll(entity);
+        assertThat(pageInfo2.getSize()).isGreaterThan(0);
+    }
 
     @Test
     public void testSelectById() {

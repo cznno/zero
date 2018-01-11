@@ -1,5 +1,6 @@
 package person.cznno.zero.admin.service;
 
+import com.github.pagehelper.PageInfo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,17 @@ public class PermissionServiceTest {
 
     @Autowired
     private PermissionService permissionService;
+
+    @Test
+    public void testSelectAll() {
+        PageInfo<PermissionEntity> pageInfo = permissionService.selectAll(0, 0);
+        assertThat(pageInfo.getSize()).isGreaterThan(0);
+        PermissionEntity entity = new PermissionEntity();
+        entity.setPage(1);
+        entity.setRows(5);
+        PageInfo<PermissionEntity> pageInfo2 = permissionService.selectAll(entity);
+        assertThat(pageInfo2.getSize()).isGreaterThan(0);
+    }
 
     @Test
     public void testSelectById() {
