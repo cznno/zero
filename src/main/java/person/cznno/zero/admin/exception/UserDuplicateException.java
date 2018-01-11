@@ -1,12 +1,10 @@
 package person.cznno.zero.admin.exception;
 
-import person.cznno.zero.base.exception.CheckException;
-
 /**
  * Created by cznno
  * Date: 18-1-9
  */
-public class UserDuplicateException extends CheckException {
+public class UserDuplicateException extends RuntimeException {
     public UserDuplicateException() {
     }
 

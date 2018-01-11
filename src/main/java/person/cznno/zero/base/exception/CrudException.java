@@ -6,7 +6,7 @@ import person.cznno.zero.base.enums.CrudStatusEnum;
  * Created by cznno
  * Date: 18-1-9
  */
-public class CrudException extends CheckException {
+public class CrudException extends RuntimeException {
 
     public CrudException() {
     }

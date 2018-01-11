@@ -5,7 +5,7 @@ package person.cznno.zero.base.exception;
  * Created by cznno
  * Date: 18-1-9
  */
-public class NoPermissionException extends CheckException {
+public class NoPermissionException extends RuntimeException {
     public NoPermissionException() {
     }
 
