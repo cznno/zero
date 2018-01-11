@@ -32,7 +32,7 @@ public class PermissionManagementController {
      * @return 修改的条数
      */
     @PutMapping("user_role")
-    public Response updateRolePermissionRelations(@RequestBody List<RolePermissionEntity> rolePermissionList) {
+    public Response updateRolePermissionRelation(@RequestBody List<RolePermissionEntity> rolePermissionList) {
         return CrudResponseFactory.get(
                 CrudStatusEnum.UPDATE,
                 accessControlService.updateRolePermissionRelations(rolePermissionList));
@@ -45,7 +45,7 @@ public class PermissionManagementController {
      * @return 修改的条数
      */
     @PutMapping("role_menu")
-    public Response updateUserRoleRelations(@RequestBody List<UserRoleEntity> userRoleList) {
+    public Response updateUserRoleRelation(@RequestBody List<UserRoleEntity> userRoleList) {
         return CrudResponseFactory.get(
                 CrudStatusEnum.UPDATE,
                 accessControlService.updateUserRoleRelations(userRoleList));

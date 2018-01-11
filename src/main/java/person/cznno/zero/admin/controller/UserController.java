@@ -42,7 +42,7 @@ public class UserController {
      * @return 用户实体
      */
     @GetMapping("/{id}")
-    public Response get(@PathVariable Integer id) {
+    public Response selectById(@PathVariable Integer id) {
         return CrudResponseFactory.get(CrudStatusEnum.SELECT, userService.selectById(id));
     }
 
@@ -53,7 +53,7 @@ public class UserController {
      * @return 新增的条数
      */
     @PostMapping
-    public Response insertUser(@RequestBody UserEntity entity) {
+    public Response insert(@RequestBody UserEntity entity) {
         return CrudResponseFactory.get(CrudStatusEnum.INSERT, userService.insertSelective(entity));
     }
 

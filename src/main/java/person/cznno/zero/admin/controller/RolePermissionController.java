@@ -41,7 +41,7 @@ public class RolePermissionController {
      * @return 角色权限实体
      */
     @GetMapping("/{id}")
-    public Response SelectById(@PathVariable Integer id) {
+    public Response selectById(@PathVariable Integer id) {
         return CrudResponseFactory.get(CrudStatusEnum.SELECT, rolePermissionService.selectById(id));
     }
 

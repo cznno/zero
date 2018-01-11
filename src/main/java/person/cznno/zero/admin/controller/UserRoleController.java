@@ -41,7 +41,7 @@ public class UserRoleController {
      * @return 用户角色关联实体
      */
     @GetMapping("/{id}")
-    public Response SelectById(@PathVariable Integer id) {
+    public Response selectById(@PathVariable Integer id) {
         return CrudResponseFactory.get(CrudStatusEnum.SELECT, userRoleService.selectById(id));
     }
 

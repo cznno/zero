@@ -41,7 +41,7 @@ public class PermissionController {
      * @return 权限
      */
     @GetMapping("/{id}")
-    public Response SelectById(@PathVariable Integer id) {
+    public Response selectById(@PathVariable Integer id) {
         return CrudResponseFactory.get(CrudStatusEnum.SELECT, permissionService.selectById(id));
     }
 
