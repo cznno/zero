@@ -14,15 +14,15 @@ import person.cznno.zero.base.dto.response.Response;
  */
 public class PagedResponseFactory {
 
-    public static Response get(PageInfo data) {
-        PagedResponse response = new PagedResponse();
+    public static<T> Response get(PageInfo<T> data) {
+        PagedResponse<T> response = new PagedResponse<>();
         response.setSuccess(CrudStatusEnum.SELECT_SUCCESS.isSuccess());
         response.setMsg(CrudStatusEnum.SELECT_SUCCESS.getMsg());
         return setInfoData(response,data);
     }
 
-    public static Response get(BaseStatusEnum anEnum, PageInfo data) {
-        PagedResponse response = new PagedResponse();
+    public static<T> Response get(BaseStatusEnum anEnum, PageInfo<T> data) {
+        PagedResponse<T> response = new PagedResponse<>();
         response.setSuccess(anEnum.isSuccess());
         response.setMsg(anEnum.getMsg());
         return setInfoData(response,data);
@@ -35,21 +35,21 @@ public class PagedResponseFactory {
         return response;
     }
 
-    public static Response get(Boolean success, String msg, PageInfo data) {
-        PagedResponse response = new PagedResponse();
+    public static<T> Response get(Boolean success, String msg, PageInfo<T> data) {
+        PagedResponse<T> response = new PagedResponse<>();
         response.setSuccess(success);
         response.setMsg(msg);
         return setInfoData(response,data);
     }
 
-    public static Response get(Boolean success, String msg) {
-        BaseResponse response = new BaseResponse();
+    public static<T> Response get(Boolean success, String msg) {
+        BaseResponse<T> response = new BaseResponse<>();
         response.setSuccess(success);
-        response.setData(msg);
+        response.setMsg(msg);
         return response;
     }
 
-    private static PagedResponse setInfoData(PagedResponse response, PageInfo data) {
+    private static<T> PagedResponse setInfoData(PagedResponse<T> response, PageInfo<T> data) {
         response.setPage(data.getPageNum());
         response.setRows(data.getPageSize());
         response.setCount(data.getTotal());
