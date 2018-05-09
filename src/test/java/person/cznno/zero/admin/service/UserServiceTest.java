@@ -1,6 +1,7 @@
 package person.cznno.zero.admin.service;
 
 import com.github.pagehelper.PageInfo;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import person.cznno.zero.admin.entity.UserEntity;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * Created by cznno
@@ -22,11 +25,29 @@ public class UserServiceTest {
 
     @Autowired
     private UserService userService;
+    private static UserEntity userDB;
+
+    @BeforeClass
+    public static void init() {
+        userDB=new UserEntity();
+        userDB.setId(1);
+        userDB.setUsername("username");
+        userDB.setRealName("real_name");
+        userDB.setMailAddress("test_mail");
+        userDB.setPhone("test_phone");
+        userDB.setPassword("pwd");
+    }
 
     @Test
     public void getById() {
-        UserEntity userEntity = userService.selectById(1);
+
+
+        UserService userServiceMock = mock(UserService.class);
+        when(userServiceMock.selectById(1)).thenReturn(userDB);
+
+        UserEntity userEntity = userServiceMock.selectById(1);
         assertThat(userEntity.getId()).isEqualTo(1);
+        assertThat(userEntity).isEqualTo(userDB);
     }
 
     @Test
