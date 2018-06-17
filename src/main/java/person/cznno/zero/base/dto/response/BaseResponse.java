@@ -18,9 +18,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({"success", "msg", "data"})
-public class BaseResponse implements Response {
+public class BaseResponse<T> implements Response {
 
     private Boolean success;
     private String msg;
-    private Object data;
+    private T data;
 }

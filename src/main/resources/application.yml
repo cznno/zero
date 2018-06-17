@@ -31,4 +31,8 @@ pagehelper:
 
 server:
   port: 8099
+  #压缩, 只对内嵌服务器有用
+  compression:
+    enabled: true
+    mime-types: application/json,application/xml,text/html,text/xml,text/plain,application/javascript,text/css
 

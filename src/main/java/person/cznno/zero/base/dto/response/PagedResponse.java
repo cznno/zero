@@ -17,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonPropertyOrder({"success", "msg", "page", "rows", "count", "data"})
-public class PagedResponse implements Response {
+public class PagedResponse<T> implements Response {
 
     private Boolean success;
     private String msg;
@@ -25,7 +25,7 @@ public class PagedResponse implements Response {
     private Integer rows;
     private Long count;
     //数据内容
-    private List<Object> data;
+    private List<T> data;
 
     @Override
     public String getMsg() {

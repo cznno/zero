@@ -12,9 +12,9 @@ import static person.cznno.zero.util.VerifyUtil.isNullOrEmpty;
  */
 public class CrudResponseFactory extends BaseResponseFactory {
 
-    public static Response get(CrudStatusEnum anEnum, Object data) {
+    public static<T> Response get(CrudStatusEnum anEnum, T data) {
 
-        BaseResponse response = new BaseResponse();
+        BaseResponse<T> response = new BaseResponse<>();
         CrudStatusEnum resEnum = CrudStatusEnum.GENERAL_FAIL;
         Boolean success;
 

@@ -11,8 +11,8 @@ import person.cznno.zero.base.enums.BaseStatusEnum;
  */
 public class BaseResponseFactory {
 
-    public static Response get(BaseStatusEnum anEnum, Object data) {
-        BaseResponse response = new BaseResponse();
+    public static<T> Response get(BaseStatusEnum anEnum, T data) {
+        BaseResponse<T> response = new BaseResponse<>();
         response.setSuccess(anEnum.isSuccess());
         response.setMsg(anEnum.getMsg());
         response.setData(data);
@@ -26,8 +26,8 @@ public class BaseResponseFactory {
         return response;
     }
 
-    public static Response get(Boolean success, String msg, Object data) {
-        BaseResponse response = new BaseResponse();
+    public static<T> Response get(Boolean success, String msg, T data) {
+        BaseResponse<T> response = new BaseResponse<>();
         response.setSuccess(success);
         response.setMsg(msg);
         response.setData(data);
